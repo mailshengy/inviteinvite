@@ -9,55 +9,75 @@
 
 <style>
 :root {
-  --black-base: #0c0c0c;
-  --gold-main: #d4af37;
-  --gold-accent: #f3d27a;
-  --panel: rgba(20,20,20,0.85);
+  --black-base: #0b0b0d;
+  --black-panel: rgba(18,18,22,0.88);
+
+  --gold-main: #bfa24a;
+  --gold-soft: #e2c97a;
+
+  --purple-neon: #6f2cff;
+  --purple-soft: #3b1c7a;
 }
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: "Space Grotesk", sans-serif;
-  background: var(--black-base);
-  color: #eee;
+  background:
+    radial-gradient(circle at top right, rgba(111,44,255,0.15), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(59,28,122,0.18), transparent 45%),
+    var(--black-base);
+  color: #ededed;
 }
 
 header {
-  background: #0f0f0f;
-  border-bottom: 2px solid var(--gold-main);
-  padding: 14px 20px;
   position: sticky;
   top: 0;
+  background: #0f0f12;
+  border-bottom: 1px solid var(--gold-main);
   z-index: 10;
 }
 
 .header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   max-width: 1100px;
   margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logo {
-  font-family: Cinzel, serif;
-  font-size: 22px;
-  background: linear-gradient(120deg, var(--gold-main), var(--gold-accent));
-  background-size: 300% 300%;
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 22px;
+  font-size: 14px;
+}
+
+nav a:hover { color: var(--gold-main); }
+
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 70px 20px;
+}
+
+.gold-text {
+  background: linear-gradient(120deg, var(--gold-main), var(--gold-soft), var(--gold-main));
   -webkit-background-clip: text;
   color: transparent;
-  animation: shimmer 6s infinite linear;
-  position: relative;
 }
 
-.logo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 2px),
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.08), rgba(0,0,0,0.08) 1px, transparent 1px, transparent 3px);
-  mix-blend-mode: overlay;
+/* Monogram emblem */
+.emblem {
+  width: 64px;
+  height: 64px;
+}
+
+.emblem svg {
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes shimmer {
@@ -65,125 +85,136 @@ header {
   100% { background-position: 100% 50%; }
 }
 
-nav a {
-  color: #ddd;
-  text-decoration: none;
-  margin-left: 20px;
-  font-size: 14px;
-}
-
-nav a:hover {
-  color: var(--gold-main);
-}
-
-section {
-  padding: 60px 20px;
-  max-width: 1100px;
-  margin: auto;
-}
-
+/* Hero */
 .hero {
   text-align: center;
-  padding-top: 80px;
+  padding-top: 90px;
 }
 
 .hero h1 {
   font-family: Playfair Display, serif;
-  color: var(--gold-main);
   font-size: 56px;
+  margin: 14px 0;
 }
 
 .hero h2 {
-  font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 2px;
 }
 
 .double-happiness {
-  font-size: 60px;
+  font-size: 64px;
   font-family: Cinzel, serif;
-  color: var(--gold-main);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
+/* Cards */
 .card {
-  background: var(--panel);
-  border: 1px solid rgba(212,175,55,0.4);
-  border-radius: 14px;
-  padding: 36px;
-  margin-bottom: 36px;
+  background: var(--black-panel);
+  border: 1px solid rgba(191,162,74,0.35);
+  border-radius: 16px;
+  padding: 42px;
+  margin-bottom: 42px;
 }
 
 .card h3 {
   font-family: Playfair Display, serif;
-  color: var(--gold-main);
   font-size: 30px;
   margin-bottom: 14px;
 }
 
+.story p {
+  line-height: 1.9;
+}
+
+.chinese {
+  margin-top: 18px;
+  letter-spacing: 4px;
+  color: var(--gold-soft);
+}
+
+/* Info grid */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 22px;
+  gap: 26px;
 }
 
-.label { font-size: 12px; color: var(--gold-accent); letter-spacing: 1px; }
+.label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--gold-soft);
+}
+
 .value { font-size: 18px; }
+
+/* RSVP */
+form {
+  display: grid;
+  gap: 16px;
+}
 
 input, select, textarea {
   background: #111;
   border: 1px solid var(--gold-main);
   padding: 12px;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 button {
-  background: linear-gradient(135deg, var(--gold-main), var(--gold-accent));
+  background: linear-gradient(135deg, var(--gold-main), var(--gold-soft));
   border: none;
   padding: 14px;
-  color: #000;
+  color: #1a1400;
   font-weight: 600;
-  border-radius: 8px;
+  letter-spacing: 1px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-button:hover { opacity: 0.9; }
-
-/* Map */
-.map-frame {
-  width: 100%;
-  height: 320px;
-  border: 1px solid var(--gold-main);
-  border-radius: 12px;
-  margin-top: 20px;
-}
-
-/* Scratch */
+/* Scratch cards */
 .scratch-zone {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 22px;
   margin-top: 30px;
 }
+
 .scratch-card {
   position: relative;
-  background: var(--gold-accent);
-  border-radius: 14px;
   height: 120px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-  color: #600;
+  border-radius: 16px;
   overflow: hidden;
+  background: linear-gradient(135deg, var(--gold-main), var(--gold-soft));
 }
-canvas { position: absolute; inset: 0; }
 
+.prize {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: #2a1600;
+  z-index: 1;
+}
+
+.scratch-card canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* Footer */
 footer {
   text-align: center;
+  padding: 40px 20px;
   font-size: 13px;
-  color: #bbb;
-  padding: 36px 20px;
+  color: #aaa;
 }
 </style>
 </head>
@@ -192,7 +223,28 @@ footer {
 
 <header>
   <div class="header-inner">
-    <div class="logo">R ✦ S 囍</div>
+    <div class="emblem">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="goldGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="100">
+            <stop offset="0%" stop-color="#bfa24a"/>
+            <stop offset="50%" stop-color="#e2c97a"/>
+            <stop offset="100%" stop-color="#bfa24a"/>
+          </linearGradient>
+          <filter id="grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" />
+            <feColorMatrix type="saturate" values="0"/>
+            <feComposite operator="in" in2="SourceGraphic"/>
+          </filter>
+        </defs>
+        <circle cx="50" cy="50" r="46" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+        <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
+              font-family="Cinzel" font-size="34" fill="url(#goldGrad)" filter="url(#grain)">
+          R S
+        </text>
+      </svg>
+    </div>
+
     <nav>
       <a href="#story">Story</a>
       <a href="#details">Details</a>
@@ -203,52 +255,47 @@ footer {
 </header>
 
 <section class="hero">
-  <div class="double-happiness">囍</div>
-  <h1>Rayner & Shijie</h1>
+  <div class="double-happiness gold-text">囍</div>
+  <h1 class="gold-text">Rayner & Shijie</h1>
   <h2>20 June 2026</h2>
 </section>
 
 <section id="story">
-  <div class="card">
-    <h3>Our Beginning</h3>
+  <div class="card story">
+    <h3 class="gold-text">Our Beginning</h3>
     <p>
       We met in school as orientation group leaders.
-      Two guides walking the same path. From teamwork to friendship,
-      and from friendship to a promise of forever.
+      Two people guiding others, yet slowly finding each other.
+      Shared responsibility became friendship, and friendship grew into a promise for life.
     </p>
+    <div class="chinese">良缘天定 · 百年好合</div>
   </div>
 </section>
 
 <section id="details">
   <div class="card">
-    <h3>Wedding Banquet Details</h3>
+    <h3 class="gold-text">Wedding Banquet</h3>
     <div class="info-grid">
       <div><div class="label">Date</div><div class="value">20 June 2026</div></div>
       <div><div class="label">Venue</div><div class="value">Sweets Cheek Cafe</div></div>
       <div><div class="label">Location</div><div class="value">Holland Village</div></div>
       <div><div class="label">Dress Code</div><div class="value">Black & Gold</div></div>
     </div>
-
-    <iframe
-      class="map-frame"
-      src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Sweets+Cheek+Cafe+Holland+Village&maptype=roadmap&style=feature:all|element:labels|visibility:on&style=feature:all|element:geometry|color:0x000000|visibility:on&style=feature:water|color:0x444444"
-      allowfullscreen>
-    </iframe>
   </div>
 </section>
 
 <section id="rsvp">
   <div class="card">
-    <h3>RSVP</h3>
-    <form id="rsvpForm">
-      <input name="name" placeholder="Your Name" required>
-      <select name="attending">
+    <h3 class="gold-text">RSVP</h3>
+    <form>
+      <input placeholder="Your Name" required>
+      <select>
         <option>Will Attend</option>
         <option>Regretfully Decline</option>
       </select>
-      <input type="number" name="guests" placeholder="Number of Guests">
-      <input name="diet" placeholder="Dietary Restrictions">
-      <textarea name="message" rows="3" placeholder="Message for the couple"></textarea>
+      <input type="number" placeholder="Number of Guests">
+      <input placeholder="Dietary Restrictions">
+      <textarea rows="3" placeholder="Message for the couple"></textarea>
       <button type="submit">Submit RSVP</button>
     </form>
   </div>
@@ -256,65 +303,84 @@ footer {
 
 <section id="lucky">
   <div class="card">
-    <h3>Lucky Draw Blessings</h3>
-    <p>Scratch your card to see your blessing</p>
+    <h3 class="gold-text">Lucky Draw Blessings</h3>
+    <p>Scratch to reveal your blessing</p>
+
     <div class="scratch-zone">
-      <div class="scratch-card" data-text="永结同心">好  运</div>
-      <div class="scratch-card" data-text="百年好合">金  喜</div>
-      <div class="scratch-card" data-text="早生贵子">福  到</div>
+      <div class="scratch-card">
+        <div class="prize">永结同心</div>
+        <canvas></canvas>
+      </div>
+      <div class="scratch-card">
+        <div class="prize">百年好合</div>
+        <canvas></canvas>
+      </div>
+      <div class="scratch-card">
+        <div class="prize">福禄双全</div>
+        <canvas></canvas>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>祝福 Rayner & Shijie 囍</footer>
+<footer>
+  囍 Rayner & Shijie 囍
+</footer>
 
 <script>
-// RSVP submit
-document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const data = {
-    name: this.name.value,
-    attending: this.attending.value,
-    guests: this.guests.value,
-    diet: this.diet.value,
-    message: this.message.value
-  };
-  fetch("YOUR_GOOGLE_SCRIPT_WEBAPP_URL", {
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(() => {
-    alert("RSVP submitted. Thank you.");
-    this.reset();
-  });
-});
-
-// Scratch cards
 document.querySelectorAll(".scratch-card").forEach(card => {
-  const canvas = document.createElement("canvas");
+  const canvas = card.querySelector("canvas");
   const ctx = canvas.getContext("2d");
-  card.appendChild(canvas);
 
-  canvas.width = card.offsetWidth;
-  canvas.height = card.offsetHeight;
+  function resize() {
+    canvas.width = card.offsetWidth;
+    canvas.height = card.offsetHeight;
+    ctx.fillStyle = "#b5b5b5";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
 
-  // gray foil
-  ctx.fillStyle = "#c0c0c0";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+  resize();
+  window.addEventListener("resize", resize);
 
   let scratching = false;
-  canvas.addEventListener("mousedown", () => scratching = true);
-  canvas.addEventListener("mouseup", () => scratching = false);
-  canvas.addEventListener("mousemove", e => {
-    if (!scratching) return;
+
+  function scratch(x,y) {
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(e.offsetX, e.offsetY, 14, 0, Math.PI*2);
+    ctx.arc(x,y,18,0,Math.PI*2);
     ctx.fill();
+  }
 
-    if (ctx.getImageData(e.offsetX,e.offsetY,1,1).data[3] < 200) {
-      card.innerHTML = card.dataset.text;
+  function checkReveal() {
+    const img = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let cleared = 0;
+    for (let i=3;i<img.length;i+=4) {
+      if (img[i] === 0) cleared++;
     }
+    if (cleared > img.length * 0.15) {
+      canvas.style.transition = "opacity 0.6s ease";
+      canvas.style.opacity = 0;
+    }
+  }
+
+  canvas.addEventListener("mousedown", () => scratching = true);
+  canvas.addEventListener("mouseup", () => scratching = false);
+  canvas.addEventListener("mouseleave", () => scratching = false);
+  canvas.addEventListener("mousemove", e => {
+    if (!scratching) return;
+    scratch(e.offsetX,e.offsetY);
+    checkReveal();
   });
+
+  canvas.addEventListener("touchstart", () => scratching = true);
+  canvas.addEventListener("touchend", () => scratching = false);
+  canvas.addEventListener("touchmove", e => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const t = e.touches[0];
+    scratch(t.clientX-rect.left, t.clientY-rect.top);
+    checkReveal();
+  }, { passive:false });
 });
 </script>
 
