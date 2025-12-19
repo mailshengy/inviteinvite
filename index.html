@@ -4,134 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rayner & Shijie | The Union</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #d4af37;
-            --red: #c41e3a;
-            --dark: #0a0a0a;
-            --gray: #1e1e1e;
+            --deep-red: #3d0a0a;
+            --blood-red: #660000;
+            --gold-leaf: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --solid-gold: #c5a059;
+            --dark-bg: #0d0d0d;
+            --glass: rgba(255, 255, 255, 0.05);
         }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            background: var(--dark);
-            color: #e0e0e0;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            background-color: var(--dark-bg);
+            color: #f2f2f2;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
+
+        /* Typography */
         h1, h2, h3 {
             font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
+            font-weight: 700;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
+
         p {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 1.5rem auto;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #d1d1d1;
         }
+
+        /* Hero Section */
         header {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://i.etsystatic.com/31244609/r/il/b404d0/6144236539/il_1080xN.6144236539_hvwq.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
+            background: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.7)), 
+                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
+            padding: 20px;
         }
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 3px;
-            background: var(--gold);
-        }
+
         .hero-title {
-            font-size: 6rem;
-            color: var(--gold);
+            font-size: clamp(3rem, 8vw, 6rem);
             margin: 0;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+            background: var(--gold-leaf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
+
         .hero-subtitle {
-            font-size: 2.5rem;
+            font-size: clamp(1rem, 4vw, 1.8rem);
+            letter-spacing: 8px;
+            margin-top: 10px;
             color: #fff;
-            margin: 1rem 0;
         }
-        .hero-date {
-            font-size: 1.8rem;
-            color: var(--gold);
-            letter-spacing: 4px;
-        }
-        .hero-tagline {
-            font-family: 'Crimson Text', serif;
-            font-style: italic;
-            font-size: 1.4rem;
-            color: #ccc;
-            margin-top: 2rem;
-        }
-        section {
-            padding: 6rem 2rem;
+
+        /* Story Section */
+        #story {
+            padding: 100px 10% ;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--deep-red) 100%);
             text-align: center;
         }
-        #story {
-            background: var(--gray);
+
+        .content-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 60px 40px;
+            border-radius: 4px;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        #details {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://danielfooddiary.com/wp-content/uploads/2019/10/sweetcheeks8.jpg') center/cover no-repeat;
-        }
+
         .section-title {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 3rem;
-            position: relative;
+            color: var(--solid-gold);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
         }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 2px;
-            background: var(--red);
-            margin: 1.5rem auto;
+
+        /* Details Section */
+        #details {
+            padding: 100px 20px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069') center/cover fixed no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .detail-item {
-            font-size: 1.3rem;
-            margin: 1.5rem 0;
-            color: #ddd;
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 50px;
         }
+
+        .detail-box {
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 3px solid var(--solid-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .detail-box:hover {
+            transform: translateY(-10px);
+            background: rgba(102, 0, 0, 0.3);
+        }
+
+        .detail-box h3 {
+            color: var(--solid-gold);
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
         .rsvp-btn {
             display: inline-block;
-            padding: 1.2rem 3rem;
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
+            margin-top: 50px;
+            padding: 20px 50px;
             font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
+            font-weight: 700;
             text-decoration: none;
+            color: var(--dark-bg);
+            background: var(--gold-leaf);
+            position: relative;
+            z-index: 1;
+            transition: 0.5s;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
             letter-spacing: 2px;
-            transition: all 0.4s;
-            margin: 3rem 0;
         }
+
         .rsvp-btn:hover {
-            background: var(--gold);
-            color: var(--dark);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.6);
+            transform: scale(1.05);
         }
+
         footer {
-            background: #000;
-            padding: 3rem;
+            padding: 50px;
             text-align: center;
-            font-size: 0.9rem;
-            color: #777;
+            background: #050505;
+            border-top: 1px solid #222;
         }
+
+        footer p {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .hero-title { font-size: 4rem; }
-            .hero-subtitle { font-size: 2rem; }
-            .section-title { font-size: 2.5rem; }
-            p { font-size: 1rem; }
+            #story, #details { padding: 60px 20px; }
+            .content-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -139,29 +181,40 @@
 
     <header>
         <h1 class="hero-title">Rayner & Shijie</h1>
-        <h2 class="hero-subtitle">The Union</h2>
-        <p class="hero-date">20 June 2026</p>
-        <p class="hero-tagline">You're cordially invited to the deal of a lifetime</p>
+        <div class="hero-subtitle">The Union</div>
+        <p style="color: var(--solid-gold); letter-spacing: 5px; font-weight: 500;">20 . 06 . 2026</p>
     </header>
 
     <section id="story">
-        <h2 class="section-title">Our Story</h2>
-        <p>We met in school as orientation group leaders—running the show, rallying the freshies, and turning chaos into unforgettable memories. Amid the games and late-night planning, sparks flew. From campus bosses to partners in crime, we've been building our empire ever since.</p>
-        <p>Now, we're making it official. Join the family.</p>
+        <div class="content-card">
+            <h2 class="section-title">The Foundation</h2>
+            <p>We met in the heat of orientation—two leaders turning campus chaos into a legacy. What started as late-night planning sessions and rallying the crowd evolved into a partnership built on ambition and shared vision.</p>
+            <p>From university halls to the real world, we’ve been each other’s greatest allies. Now, we're making the union official.</p>
+        </div>
     </section>
 
     <section id="details">
-        <h2 class="section-title">The Details</h2>
-        <div class="detail-item"><strong>Date</strong><br>Saturday, 20 June 2026</div>
-        <div class="detail-item"><strong>Venue</strong><br>Sweets Cheek Cafe<br>Holland Village, Singapore</div>
-        <div class="detail-item">An intimate ceremony followed by a banquet celebration—fine company, great vibes, and no loose ends.</div>
+        <h2 class="section-title" style="color: #fff;">The Event</h2>
+        <div class="grid-container">
+            <div class="detail-box">
+                <h3>When</h3>
+                <p>Saturday, 20 June 2026<br>Ceremony: 5:00 PM<br>Banquet: 7:00 PM</p>
+            </div>
+            <div class="detail-box">
+                <h3>Where</h3>
+                <p>Sweet Cheeks Cafe<br>Holland Village<br>Singapore</p>
+            </div>
+            <div class="detail-box">
+                <h3>Attire</h3>
+                <p>Formal Creative<br>Think deep tones, rich textures, and gold accents.</p>
+            </div>
+        </div>
         
-        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="rsvp-btn">RSVP – Confirm Your Seat</a>
-        <p style="font-size:1rem; color:#aaa;">Responses linked directly to our secure sheet. Kindly reply by [deadline].</p>
+        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="rsvp-btn">Secure Your Presence</a>
     </section>
 
     <footer>
-        <p>Crafted with love & a touch of edge • Rayner & Shijie • 2026</p>
+        <p>&copy; 2026 RAYNER & SHIJIE | DESIGNED FOR THE BOLD</p>
     </footer>
 
 </body>
