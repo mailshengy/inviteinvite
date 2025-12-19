@@ -1,221 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayner & Shijie | The Union</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --deep-red: #3d0a0a;
-            --blood-red: #660000;
-            --gold-leaf: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --solid-gold: #c5a059;
-            --dark-bg: #0d0d0d;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
+<meta charset="UTF-8">
+<title>Rayner & Shijie | 20 June 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cinzel:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--dark-bg);
-            color: #f2f2f2;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
+<style>
+:root {
+  --black: #0b0b0b;
+  --red: #8b0000;
+  --gold: #c9a24d;
+  --dark-red: #4a0000;
+}
 
-        /* Typography */
-        h1, h2, h3 {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
+* {
+  box-sizing: border-box;
+}
 
-        p {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.2rem;
-            font-weight: 300;
-            line-height: 1.8;
-            color: #d1d1d1;
-        }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a0000, var(--black));
+  color: #f3f3f3;
+  font-family: Inter, sans-serif;
+}
 
-        /* Hero Section */
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.7)), 
-                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
-            padding: 20px;
-        }
+header {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(90deg, #000, var(--dark-red));
+  border-bottom: 1px solid rgba(201,162,77,0.4);
+  z-index: 10;
+}
 
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            margin: 0;
-            background: var(--gold-leaf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-        }
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-        .hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.8rem);
-            letter-spacing: 8px;
-            margin-top: 10px;
-            color: #fff;
-        }
+.logo {
+  font-family: Cinzel, serif;
+  color: var(--gold);
+  font-size: 18px;
+  letter-spacing: 2px;
+}
 
-        /* Story Section */
-        #story {
-            padding: 100px 10% ;
-            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--deep-red) 100%);
-            text-align: center;
-        }
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+}
 
-        .content-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 60px 40px;
-            border-radius: 4px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+nav a:hover {
+  color: var(--gold);
+}
 
-        .section-title {
-            color: var(--solid-gold);
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 70px 20px;
+}
 
-        /* Details Section */
-        #details {
-            padding: 100px 20px;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069') center/cover fixed no-repeat;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.hero {
+  text-align: center;
+  padding-top: 90px;
+}
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1100px;
-            margin-top: 50px;
-        }
+.hero h1 {
+  font-family: Playfair Display, serif;
+  font-size: 56px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
 
-        .detail-box {
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.6);
-            border-top: 3px solid var(--solid-gold);
-            transition: transform 0.3s ease;
-        }
+.hero h2 {
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #ccc;
+}
 
-        .detail-box:hover {
-            transform: translateY(-10px);
-            background: rgba(102, 0, 0, 0.3);
-        }
+.hero .double-happiness {
+  font-size: 60px;
+  color: #b30000;
+  margin: 30px 0;
+  font-family: Cinzel, serif;
+}
 
-        .detail-box h3 {
-            color: var(--solid-gold);
-            margin-bottom: 20px;
-        }
+.card {
+  background: linear-gradient(180deg, rgba(20,0,0,0.9), rgba(0,0,0,0.9));
+  border: 1px solid rgba(201,162,77,0.25);
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 40px;
+}
 
-        /* Button Styling */
-        .rsvp-btn {
-            display: inline-block;
-            margin-top: 50px;
-            padding: 20px 50px;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--dark-bg);
-            background: var(--gold-leaf);
-            position: relative;
-            z-index: 1;
-            transition: 0.5s;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+.card h3 {
+  font-family: Playfair Display, serif;
+  color: var(--gold);
+  margin-bottom: 16px;
+  font-size: 28px;
+}
 
-        .rsvp-btn:hover {
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.6);
-            transform: scale(1.05);
-        }
+.highlight {
+  color: var(--gold);
+}
 
-        footer {
-            padding: 50px;
-            text-align: center;
-            background: #050505;
-            border-top: 1px solid #222;
-        }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
 
-        footer p {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            opacity: 0.6;
-        }
+.label {
+  color: #aaa;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            #story, #details { padding: 60px 20px; }
-            .content-card { padding: 30px 20px; }
-        }
-    </style>
+.value {
+  font-size: 18px;
+  margin-top: 6px;
+}
+
+.story p {
+  line-height: 1.8;
+  color: #ddd;
+}
+
+.chinese {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #c9a24d;
+  letter-spacing: 2px;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+}
+
+input, select, textarea {
+  background: #000;
+  border: 1px solid rgba(201,162,77,0.4);
+  padding: 12px;
+  color: #fff;
+  border-radius: 6px;
+  font-family: Inter, sans-serif;
+}
+
+button {
+  background: linear-gradient(135deg, #8b0000, #c9a24d);
+  border: none;
+  padding: 14px;
+  color: #000;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1 class="hero-title">Rayner & Shijie</h1>
-        <div class="hero-subtitle">The Union</div>
-        <p style="color: var(--solid-gold); letter-spacing: 5px; font-weight: 500;">20 . 06 . 2026</p>
-    </header>
+<header>
+  <div class="header-inner">
+    <div class="logo">Rayner 囍 Shijie</div>
+    <nav>
+      <a href="#story">Our Story</a>
+      <a href="#details">Details</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+  </div>
+</header>
 
-    <section id="story">
-        <div class="content-card">
-            <h2 class="section-title">The Foundation</h2>
-            <p>We met in the heat of orientation—two leaders turning campus chaos into a legacy. What started as late-night planning sessions and rallying the crowd evolved into a partnership built on ambition and shared vision.</p>
-            <p>From university halls to the real world, we’ve been each other’s greatest allies. Now, we're making the union official.</p>
-        </div>
-    </section>
+<section class="hero">
+  <div class="double-happiness">囍</div>
+  <h1>Rayner & Shijie</h1>
+  <h2>20 June 2026</h2>
+</section>
 
-    <section id="details">
-        <h2 class="section-title" style="color: #fff;">The Event</h2>
-        <div class="grid-container">
-            <div class="detail-box">
-                <h3>When</h3>
-                <p>Saturday, 20 June 2026<br>Ceremony: 5:00 PM<br>Banquet: 7:00 PM</p>
-            </div>
-            <div class="detail-box">
-                <h3>Where</h3>
-                <p>Sweet Cheeks Cafe<br>Holland Village<br>Singapore</p>
-            </div>
-            <div class="detail-box">
-                <h3>Attire</h3>
-                <p>Formal Creative<br>Think deep tones, rich textures, and gold accents.</p>
-            </div>
-        </div>
-        
-        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="rsvp-btn">Secure Your Presence</a>
-    </section>
+<section id="story">
+  <div class="card story">
+    <h3>How We Met</h3>
+    <p>
+      We first crossed paths in school, not as classmates, but as orientation group leaders.
+      Two people tasked with guiding others found themselves walking the same path.
+      What started as teamwork grew into friendship, and friendship quietly became love.
+    </p>
+    <div class="chinese">
+      良缘天定 · 百年好合
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2026 RAYNER & SHIJIE | DESIGNED FOR THE BOLD</p>
-    </footer>
+<section id="details">
+  <div class="card">
+    <h3>Wedding Banquet</h3>
+    <div class="info-grid">
+      <div>
+        <div class="label">Date</div>
+        <div class="value">20 June 2026</div>
+      </div>
+      <div>
+        <div class="label">Venue</div>
+        <div class="value">Sweets Cheek Cafe</div>
+      </div>
+      <div>
+        <div class="label">Location</div>
+        <div class="value">Holland Village</div>
+      </div>
+      <div>
+        <div class="label">Theme</div>
+        <div class="value">Black Pop Gangster</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rsvp">
+  <div class="card">
+    <h3>RSVP</h3>
+    <form id="rsvpForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <select name="attending">
+        <option value="Yes">Will Attend</option>
+        <option value="No">Regretfully Decline</option>
+      </select>
+      <input type="number" name="guests" placeholder="Number of Guests">
+      <textarea name="message" rows="3" placeholder="Message for the couple"></textarea>
+      <button type="submit">Submit RSVP</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  囍 Rayner & Shijie 囍
+</footer>
+
+<script>
+document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = {
+    name: this.name.value,
+    attending: this.attending.value,
+    guests: this.guests.value,
+    message: this.message.value
+  };
+
+  fetch("YOUR_GOOGLE_SCRIPT_WEBAPP_URL", {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    alert("RSVP submitted. Thank you.");
+    this.reset();
+  });
+});
+</script>
 
 </body>
 </html>
