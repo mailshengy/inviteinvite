@@ -3,25 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayner & Shijie | The Big Union</title>
+    <title>Rayner & Shijie | The Union</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap');
-        
+        :root {
+            --gold: #d4af37;
+            --red: #c41e3a;
+            --dark: #0a0a0a;
+            --gray: #1e1e1e;
+        }
         body {
             margin: 0;
             padding: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Roboto', sans-serif;
-            background-image: linear-gradient(45deg, rgba(255,0,0,0.05) 25%, transparent 25%), 
-                              linear-gradient(-45deg, rgba(255,0,0,0.05) 25%, transparent 25%),
-                              linear-gradient(45deg, transparent 75%, rgba(255,0,0,0.05) 75%),
-                              linear-gradient(-45deg, transparent 75%, rgba(255,0,0,0.05) 75%);
-            background-size: 20px 20px; /* Subtle pinstripe gangster vibe */
+            background: var(--dark);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 1.5rem auto;
         }
         header {
-            background: url('https://i.etsystatic.com/9439290/r/il/4f2dec/4552135508/il_fullxfull.4552135508_26u4.jpg') center/cover no-repeat; /* Gangster-inspired background */
             height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://i.etsystatic.com/31244609/r/il/b404d0/6144236539/il_1080xN.6144236539_hvwq.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -29,108 +41,127 @@
             text-align: center;
             position: relative;
         }
-        header::before {
+        header::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: var(--gold);
         }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            color: #ffd700; /* Gold */
-            text-shadow: 3px 3px 10px #ff0000;
-            z-index: 1;
+        .hero-title {
+            font-size: 6rem;
+            color: var(--gold);
+            margin: 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
         }
-        h2 {
+        .hero-subtitle {
             font-size: 2.5rem;
-            color: #ff0000; /* Red pop */
+            color: #fff;
             margin: 1rem 0;
-            z-index: 1;
         }
-        .subtitle {
-            font-size: 1.5rem;
-            color: #ffd700;
-            z-index: 1;
+        .hero-date {
+            font-size: 1.8rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+        }
+        .hero-tagline {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #ccc;
+            margin-top: 2rem;
         }
         section {
-            padding: 4rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            padding: 6rem 2rem;
             text-align: center;
         }
         #story {
-            background: #111;
+            background: var(--gray);
         }
         #details {
-            background: url('https://danielfooddiary.com/wp-content/uploads/2022/08/hollandvillagecafes21.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://danielfooddiary.com/wp-content/uploads/2019/10/sweetcheeks8.jpg') center/cover no-repeat;
+        }
+        .section-title {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
             position: relative;
         }
-        #details::before {
+        .section-title::after {
             content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: var(--red);
+            margin: 1.5rem auto;
         }
-        .content {
-            position: relative;
-            z-index: 1;
+        .detail-item {
+            font-size: 1.3rem;
+            margin: 1.5rem 0;
+            color: #ddd;
         }
         .rsvp-btn {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: #ff0000;
-            color: #fff;
-            font-size: 1.5rem;
+            padding: 1.2rem 3rem;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
             text-decoration: none;
-            border: 3px solid #ffd700;
-            margin: 2rem 0;
-            transition: 0.3s;
+            letter-spacing: 2px;
+            transition: all 0.4s;
+            margin: 3rem 0;
         }
         .rsvp-btn:hover {
-            background: #ffd700;
-            color: #000;
+            background: var(--gold);
+            color: var(--dark);
         }
         footer {
-            background: #111;
-            padding: 2rem;
+            background: #000;
+            padding: 3rem;
             text-align: center;
             font-size: 0.9rem;
+            color: #777;
         }
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2rem; }
+            .hero-title { font-size: 4rem; }
+            .hero-subtitle { font-size: 2rem; }
+            .section-title { font-size: 2.5rem; }
+            p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Rayner & Shijie</h1>
-        <h2>Are Tying the Knot</h2>
-        <p class="subtitle">The Big Union • 20 June 2026</p>
-        <p class="subtitle">You’re Invited to the Heist of the Century</p>
+        <h1 class="hero-title">Rayner & Shijie</h1>
+        <h2 class="hero-subtitle">The Union</h2>
+        <p class="hero-date">20 June 2026</p>
+        <p class="hero-tagline">You're cordially invited to the deal of a lifetime</p>
     </header>
 
     <section id="story">
-        <h2>Our Story: The Origin</h2>
-        <p>Back in school, we met as orientation group leaders — bossing freshies around, planning games, and running the show. Sparks flew amid the chaos, and the rest is history. From campus capos to life partners, we're ready to build our empire together.</p>
+        <h2 class="section-title">Our Story</h2>
+        <p>We met in school as orientation group leaders—running the show, rallying the freshies, and turning chaos into unforgettable memories. Amid the games and late-night planning, sparks flew. From campus bosses to partners in crime, we've been building our empire ever since.</p>
+        <p>Now, we're making it official. Join the family.</p>
     </section>
 
     <section id="details">
-        <div class="content">
-            <h2>The Hit: Ceremony & Banquet</h2>
-            <p><strong>Date:</strong> Saturday, 20 June 2026</p>
-            <p><strong>Location:</strong> Sweets Cheek Cafe<br>Holland Village, Singapore</p>
-            <p>Join us for an intimate ceremony followed by a gangster-style banquet — good food, great vibes, and zero drama (except the fun kind).</p>
-            
-            <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="rsvp-btn">RSVP Now – Don't Sleep on This</a>
-            <p>(Responses go straight to our Google Sheets backend. Deadline: TBA)</p>
-        </div>
+        <h2 class="section-title">The Details</h2>
+        <div class="detail-item"><strong>Date</strong><br>Saturday, 20 June 2026</div>
+        <div class="detail-item"><strong>Venue</strong><br>Sweets Cheek Cafe<br>Holland Village, Singapore</div>
+        <div class="detail-item">An intimate ceremony followed by a banquet celebration—fine company, great vibes, and no loose ends.</div>
+        
+        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="rsvp-btn">RSVP – Confirm Your Seat</a>
+        <p style="font-size:1rem; color:#aaa;">Responses linked directly to our secure sheet. Kindly reply by [deadline].</p>
     </section>
 
     <footer>
-        <p>Made with love (and a little edge) • Rayner & Shijie 2026</p>
+        <p>Crafted with love & a touch of edge • Rayner & Shijie • 2026</p>
     </footer>
 
 </body>
