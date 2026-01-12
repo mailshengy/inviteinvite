@@ -447,10 +447,11 @@ footer{
       </select>
       
       <select name="Guests">
-        <option value="Me Only">Me Only</option>
-        <option value="Me + 1">Me + 1 Guest</option>
-        <option value="Me + 2">Me + 2 Guests</option>
-        <option value="Me + 3">Me + 3 Guests</option>
+        <option value="" disabled selected>Any additional guests?</option>
+        <option value="0">Just Me!</option>
+        <option value="1">Me + 1 Guest</option>
+        <option value="2">Me + 2 Guests</option>
+        <option value="3">Me + 3 Guests</option>
       </select>
       
       <select name="Furbabies">
@@ -460,7 +461,7 @@ footer{
         <option value="3">3 Furbabies</option>
       </select>
       
-      <input name="Dietary" placeholder="Dietary Restrictions">
+      <input name="Dietary" placeholder="Dietary Restrictions if Any">
       <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
       
       <button type="submit" id="submit-btn">Submit RSVP</button>
