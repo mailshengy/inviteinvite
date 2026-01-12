@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>The Union of 2026, Yu Are My 世界！| Raynard & Shijie</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -14,16 +14,14 @@
   --bg-sand: #fdf5e6;
   --white-panel: rgba(255, 255, 255, 0.92);
   
-  --text-main: #1c2e2e; /* Dark Jungle Green */
+  --text-main: #1c2e2e;
   --text-muted: #546e7a;
-
   --gold-main:#b89b3e;
   
   /* Tropical accents */
   --leaf:#00b894;
   --leaf-deep:#006266;
   --ocean:#0984e3;
-  --sunset:#ff7675;
 
   --shadow: rgba(0, 50, 50, 0.08);
 }
@@ -35,27 +33,26 @@ body{
   font-family:"Space Grotesk", sans-serif;
   color: var(--text-main);
   overflow-x:hidden;
-
-  /* Tropical Day: Sky -> Clouds -> Sand */
-  background: 
-    linear-gradient(180deg, var(--bg-sky) 0%, #ffffff 40%, var(--bg-sand) 100%);
+  background: linear-gradient(180deg, var(--bg-sky) 0%, #ffffff 40%, var(--bg-sand) 100%);
   min-height: 100vh;
+  /* Prevent rubber-band scrolling on whole body for cleaner app feel */
+  overscroll-behavior-y: none; 
 }
 
-/* Background Palms (Subtle Watermark) */
+/* Background Palms */
 .palm{
   position: fixed;
   bottom: -40px;
   width: 360px;
   height: 360px;
-  opacity: 0.15; /* Very subtle */
+  opacity: 0.15; 
   z-index: 0;
   pointer-events: none;
 }
 .palm.left{ left:-80px; transform: rotate(-8deg) scale(1.05); }
 .palm.right{ right:-80px; transform: rotate(10deg) scale(1.05); opacity:0.12; }
 
-/* Sun Motes / Pollen */
+/* Motes */
 .motes{
   position: fixed;
   inset:0;
@@ -89,7 +86,7 @@ header{
   padding:14px 20px;
   display:flex;
   align-items:center;
-  justify-content:center; /* Centered Nav */
+  justify-content:center;
 }
 
 nav a{
@@ -122,11 +119,8 @@ section{
   transform: translateY(0);
 }
 
-/* Typography Classes */
-.gold-text{
-  color: var(--gold-main);
-  font-weight: 600;
-}
+/* Typography */
+.gold-text{ color: var(--gold-main); font-weight: 600; }
 .tropical-text{
   background: linear-gradient(120deg, var(--leaf-deep), var(--leaf));
   -webkit-background-clip:text;
@@ -134,147 +128,79 @@ section{
 }
 
 /* Hero */
-.hero{
-  text-align:center;
-  padding-top:100px;
-  position: relative;
-}
+.hero{ text-align:center; padding-top:100px; position: relative; }
 
 .hero-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 16px;
-  border-radius:999px;
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  margin-bottom: 24px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 16px; border-radius:999px;
+  background: #ffffff; border: 1px solid rgba(0,0,0,0.08);
+  margin-bottom: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted);
 }
-.dot{
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gold-main);
-}
+.dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--gold-main); }
 
 .hero h1{
-  font-family: Cinzel, serif;
-  font-size:18px;
-  letter-spacing:4px;
-  color: var(--gold-main);
-  margin: 0;
+  font-family: Cinzel, serif; font-size:18px;
+  letter-spacing:4px; color: var(--gold-main); margin: 0;
 }
 .hero h2{
-  font-family: Playfair Display, serif;
-  font-size:60px;
-  color: var(--text-main);
-  margin: 14px 0;
-  line-height: 1.1;
+  font-family: Playfair Display, serif; font-size:60px;
+  color: var(--text-main); margin: 14px 0; line-height: 1.1;
 }
-.hero h3{
-  font-weight:500;
-  letter-spacing:1px;
-  margin: 0;
-  color: var(--text-muted);
-}
-.hero .subline{
-  margin-top: 16px;
-  font-size: 15px;
-  color: var(--leaf-deep);
-  font-weight: 500;
-}
+.hero h3{ font-weight:500; letter-spacing:1px; margin: 0; color: var(--text-muted); }
+.hero .subline{ margin-top: 16px; font-size: 15px; color: var(--leaf-deep); font-weight: 500; }
 .hero .subline span{ padding: 0 8px; }
 
-/* Cards (White Glass) */
+/* Cards */
 .card{
   background: var(--white-panel);
-  border: 1px solid #fff;
-  border-radius: 24px;
-  padding: 50px;
-  margin-bottom: 40px;
-  position: relative;
+  border: 1px solid #fff; border-radius: 24px;
+  padding: 50px; margin-bottom: 40px; position: relative;
   box-shadow: 0 20px 40px var(--shadow);
 }
-
 .card h3{
-  font-family: Playfair Display, serif;
-  font-size: 32px;
-  margin-top: 0;
-  color: var(--leaf-deep);
+  font-family: Playfair Display, serif; font-size: 32px;
+  margin-top: 0; color: var(--leaf-deep);
 }
-
 .divider{
-  height: 2px;
-  width: 60px;
-  background: var(--gold-main);
-  margin: 18px 0 26px;
-  opacity: 0.5;
+  height: 2px; width: 60px; background: var(--gold-main);
+  margin: 18px 0 26px; opacity: 0.5;
 }
 
-/* Info grid */
-.info-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap:30px;
-}
+/* Info Grid */
+.info-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:30px; }
+.label{ font-size:11px; letter-spacing:1px; color: var(--gold-main); text-transform: uppercase; font-weight: 700; }
+.value{ font-size:18px; margin-top: 6px; color: var(--text-main); }
 
-.label{
-  font-size:11px;
-  letter-spacing:1px;
-  color: var(--gold-main);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.value{
-  font-size:18px;
-  margin-top: 6px;
-  color: var(--text-main);
-}
-
-/* RSVP Form */
+/* Form */
 form{ display:grid; gap:18px; }
-
 input, select, textarea{
-  background: #ffffff;
-  border: 1px solid #dcdcdc;
-  padding: 14px;
-  color: var(--text-main);
-  border-radius: 8px;
-  font-family:"Space Grotesk", sans-serif;
-  outline: none;
-  font-size: 15px;
-  transition: all 0.3s;
+  background: #ffffff; border: 1px solid #dcdcdc; padding: 14px;
+  color: var(--text-main); border-radius: 8px; font-family:"Space Grotesk", sans-serif;
+  outline: none; font-size: 15px; transition: all 0.3s;
 }
 input:focus, select:focus, textarea:focus{
-  border-color: var(--leaf);
-  box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.1);
+  border-color: var(--leaf); box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.1);
 }
 ::placeholder { color: #a0a0a0; }
-
 button{
   background: linear-gradient(135deg, var(--leaf-deep), var(--leaf));
-  border: none;
-  padding: 16px;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 1px;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 184, 148, 0.25);
-  transition: transform 0.2s;
+  border: none; padding: 16px; color: #fff; font-weight: 600;
+  letter-spacing: 1px; border-radius: 8px; cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 184, 148, 0.25); transition: transform 0.2s;
 }
 button:hover{ transform: translateY(-2px); }
 
-/* Scratch cards */
+/* --- REALISTIC SCRATCH CARD CSS --- */
 .scratch-zone{
   display:grid;
-  /* Updated minmax to 140px to fit 3 cards per row on standard screens */
-  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
   gap:16px;
   margin-top: 30px;
+  /* Prevent selecting text while furiously scratching */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .scratch-card{
@@ -283,50 +209,46 @@ button:hover{ transform: translateY(-2px); }
   border-radius: 12px;
   overflow: hidden;
   background: #f0fdf4; 
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: opacity 0.5s ease, filter 0.5s ease;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s, opacity 0.5s ease, filter 0.5s ease;
+  
+  /* CRITICAL: Disables browser handling of gestures (scrolling/zooming) on the card */
+  touch-action: none; 
 }
 
-/* New class to disable unselected cards */
+/* Locked State */
 .scratch-card.locked-out {
-  opacity: 0.3;
+  opacity: 0.4;
   filter: grayscale(100%);
   pointer-events: none;
+  transform: scale(0.95);
+}
+
+/* Winner/Revealed State */
+.scratch-card.revealed {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  border-color: var(--gold-main);
 }
 
 .prize{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px; /* Slightly smaller to fit 4 chars nicely */
-  font-weight:700;
-  letter-spacing:2px;
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; font-weight:700; letter-spacing:2px;
   color: var(--leaf-deep);
-  z-index:1;
-  text-align: center;
-  padding: 5px;
+  z-index:1; text-align: center;
 }
 
 canvas{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  cursor: grab;
+  position:absolute; inset:0; z-index:2;
+  /* CRITICAL: Disables browser gestures on canvas */
+  touch-action: none;
+  cursor: crosshair;
 }
-canvas:active{ cursor: grabbing; }
 
 /* Footer */
-footer{
-  text-align:center;
-  padding: 60px 20px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
+footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--text-muted); }
 
-/* Mobile tweaks */
 @media (max-width: 680px){
   .hero h2{ font-size: 42px; }
   .card{ padding: 30px 20px; }
@@ -338,39 +260,8 @@ footer{
 <body>
 
 <div class="motes"></div> 
-<svg class="palm left" viewBox="0 0 200 200" aria-hidden="true">
-  <defs>
-    <linearGradient id="palmGlowL" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#00b894"/>
-      <stop offset="100%" stop-color="#55efc4"/>
-    </linearGradient>
-  </defs>
-  <g fill="none" stroke="url(#palmGlowL)" stroke-width="2" stroke-linecap="round">
-    <path d="M110 190 C108 150, 96 128, 92 108 C88 86, 98 70, 110 62" />
-    <path d="M110 68 C98 50, 74 40, 52 44 C74 48, 92 58, 110 70" />
-    <path d="M110 68 C122 50, 146 40, 168 44 C146 48, 128 58, 110 70" />
-    <path d="M110 78 C90 70, 64 72, 44 86 C66 82, 90 84, 110 92" />
-    <path d="M110 78 C130 70, 156 72, 176 86 C154 82, 130 84, 110 92" />
-    <path d="M110 62 C108 40, 100 26, 88 16 C98 28, 106 44, 110 62" />
-  </g>
-</svg>
-
-<svg class="palm right" viewBox="0 0 200 200" aria-hidden="true">
-  <defs>
-    <linearGradient id="palmGlowR" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0984e3"/>
-      <stop offset="100%" stop-color="#74b9ff"/>
-    </linearGradient>
-  </defs>
-  <g fill="none" stroke="url(#palmGlowR)" stroke-width="2" stroke-linecap="round">
-    <path d="M90 190 C92 150, 104 128, 108 108 C112 86, 102 70, 90 62" />
-    <path d="M90 68 C102 50, 126 40, 148 44 C126 48, 108 58, 90 70" />
-    <path d="M90 68 C78 50, 54 40, 32 44 C54 48, 72 58, 90 70" />
-    <path d="M90 78 C110 70, 136 72, 156 86 C134 82, 110 84, 90 92" />
-    <path d="M90 78 C70 70, 44 72, 24 86 C46 82, 70 84, 90 92" />
-    <path d="M90 62 C92 40, 100 26, 112 16 C102 28, 94 44, 90 62" />
-  </g>
-</svg>
+<svg class="palm left" viewBox="0 0 200 200"><defs><linearGradient id="palmGlowL" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00b894"/><stop offset="100%" stop-color="#55efc4"/></linearGradient></defs><g fill="none" stroke="url(#palmGlowL)" stroke-width="2" stroke-linecap="round"><path d="M110 190 C108 150, 96 128, 92 108 C88 86, 98 70, 110 62" /><path d="M110 68 C98 50, 74 40, 52 44 C74 48, 92 58, 110 70" /><path d="M110 68 C122 50, 146 40, 168 44 C146 48, 128 58, 110 70" /><path d="M110 78 C90 70, 64 72, 44 86 C66 82, 90 84, 110 92" /><path d="M110 78 C130 70, 156 72, 176 86 C154 82, 130 84, 110 92" /><path d="M110 62 C108 40, 100 26, 88 16 C98 28, 106 44, 110 62" /></g></svg>
+<svg class="palm right" viewBox="0 0 200 200"><defs><linearGradient id="palmGlowR" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0984e3"/><stop offset="100%" stop-color="#74b9ff"/></linearGradient></defs><g fill="none" stroke="url(#palmGlowR)" stroke-width="2" stroke-linecap="round"><path d="M90 190 C92 150, 104 128, 108 108 C112 86, 102 70, 90 62" /><path d="M90 68 C102 50, 126 40, 148 44 C126 48, 108 58, 90 70" /><path d="M90 68 C78 50, 54 40, 32 44 C54 48, 72 58, 90 70" /><path d="M90 78 C110 70, 136 72, 156 86 C134 82, 110 84, 90 92" /><path d="M90 78 C70 70, 44 72, 24 86 C46 82, 70 84, 90 92" /><path d="M90 62 C92 40, 100 26, 112 16 C102 28, 94 44, 90 62" /></g></svg>
 
 <header>
   <div class="header-inner">
@@ -384,29 +275,18 @@ footer{
 </header>
 
 <section class="hero reveal">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    Tropical Lunch Celebration
-  </div>
+  <div class="hero-badge"><span class="dot"></span>Tropical Lunch Celebration</div>
   <h1>THE UNION OF 2026, Yu Are My 世界!</h1>
   <h2 class="tropical-text">Raynard & Shijie</h2>
   <h3>20 Jun 2026 (Sat) · 11am - 2pm</h3>
-  <div class="subline">
-    <span>Wheeler&#39;s Tropikana</span>
-    <span>•</span>
-    <span>Gillman Barracks area</span>
-  </div>
+  <div class="subline"><span>Wheeler&#39;s Tropikana</span><span>•</span><span>Gillman Barracks area</span></div>
 </section>
 
 <section id="story" class="reveal">
   <div class="card">
     <h3 class="tropical-text">Our Beginning</h3>
     <div class="divider"></div>
-    <p>
-      We met in school as orientation group leaders.
-      Two people guiding others, yet slowly finding each other.
-      Friendship formed, trust followed, and a lifelong promise was made.
-    </p>
+    <p>We met in school as orientation group leaders. Two people guiding others, yet slowly finding each other. Friendship formed, trust followed, and a lifelong promise was made.</p>
     <p class="gold-text">良缘天定 · 百年好合</p>
   </div>
 </section>
@@ -415,32 +295,13 @@ footer{
   <div class="card">
     <h3 class="tropical-text">Event Details</h3>
     <div class="divider"></div>
-
     <div class="info-grid">
-      <div>
-        <div class="label">Date</div>
-        <div class="value">20 Jun 2026 (Sat)</div>
-      </div>
-      <div>
-        <div class="label">Time</div>
-        <div class="value">Lunch, 11am - 2pm</div>
-      </div>
-      <div>
-        <div class="label">Venue</div>
-        <div class="value">Wheeler&#39;s Tropikana</div>
-      </div>
-      <div>
-        <div class="label">Area</div>
-        <div class="value">Gillman Barracks</div>
-      </div>
-      <div>
-        <div class="label">Dress Code</div>
-        <div class="value">Tropical Chic, Black accents welcome</div>
-      </div>
-      <div>
-        <div class="label">Theme</div>
-        <div class="value">Palms, ocean glow, sunset gold</div>
-      </div>
+      <div><div class="label">Date</div><div class="value">20 Jun 2026 (Sat)</div></div>
+      <div><div class="label">Time</div><div class="value">Lunch, 11am - 2pm</div></div>
+      <div><div class="label">Venue</div><div class="value">Wheeler&#39;s Tropikana</div></div>
+      <div><div class="label">Area</div><div class="value">Gillman Barracks</div></div>
+      <div><div class="label">Dress Code</div><div class="value">Tropical Chic, Black accents welcome</div></div>
+      <div><div class="label">Theme</div><div class="value">Palms, ocean glow, sunset gold</div></div>
     </div>
   </div>
 </section>
@@ -449,16 +310,13 @@ footer{
   <div class="card">
     <h3 class="tropical-text">RSVP</h3>
     <div class="divider"></div>
-
     <form id="rsvp-form">
       <input name="Name" placeholder="Your Name" required>
-      
       <select name="Attendance" required>
         <option value="" disabled selected>Will you be attending?</option>
         <option value="Will Attend">Will Attend</option>
         <option value="Decline">Regretfully Decline</option>
       </select>
-      
       <select name="Guests">
         <option value="" disabled selected>Any additional guests?</option>
         <option value="0">Just Me!</option>
@@ -466,17 +324,14 @@ footer{
         <option value="2">Me + 2 Guests</option>
         <option value="3">Me + 3 Guests</option>
       </select>
-      
       <select name="Furbabies">
         <option value="0" selected>0 Furbabies</option>
         <option value="1">1 Furbaby</option>
         <option value="2">2 Furbabies</option>
         <option value="3">3 Furbabies</option>
       </select>
-      
       <input name="Dietary" placeholder="Dietary Restrictions if Any">
       <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
-      
       <button type="submit" id="submit-btn">Submit RSVP</button>
       <p id="form-status" style="margin-top:10px; font-size:14px; color:#00b894; display:none;"></p>
     </form>
@@ -487,39 +342,24 @@ footer{
   <div class="card">
     <h3 class="tropical-text">Lucky Draw Blessings</h3>
     <div class="divider"></div>
-
-    <p style="font-weight: 600; font-size: 18px;">Pick one card to scratch!</p>
+    <p style="font-weight: 600; font-size: 18px;">Pick ONE card to scratch!</p>
     <p style="opacity:0.8; margin-top:-10px; font-size:14px;">Once you start scratching, the others will disappear.</p>
 
     <div class="scratch-zone">
-      <div class="scratch-card">
-        <div class="prize">永结同心</div><canvas></canvas>
-      </div>
-      <div class="scratch-card">
-        <div class="prize">百年好合</div><canvas></canvas>
-      </div>
-      <div class="scratch-card">
-        <div class="prize">福禄双全</div><canvas></canvas>
-      </div>
-      <div class="scratch-card">
-        <div class="prize">甜甜蜜蜜</div><canvas></canvas>
-      </div>
-      <div class="scratch-card">
-        <div class="prize">花开富贵</div><canvas></canvas>
-      </div>
-      <div class="scratch-card">
-        <div class="prize">龙凤呈祥</div><canvas></canvas>
-      </div>
+      <div class="scratch-card"><div class="prize">永结同心</div><canvas></canvas></div>
+      <div class="scratch-card"><div class="prize">百年好合</div><canvas></canvas></div>
+      <div class="scratch-card"><div class="prize">福禄双全</div><canvas></canvas></div>
+      <div class="scratch-card"><div class="prize">甜甜蜜蜜</div><canvas></canvas></div>
+      <div class="scratch-card"><div class="prize">花开富贵</div><canvas></canvas></div>
+      <div class="scratch-card"><div class="prize">龙凤呈祥</div><canvas></canvas></div>
     </div>
   </div>
 </section>
 
-<footer>
-  囍 Raynard &amp; Shijie 囍
-</footer>
+<footer>囍 Raynard &amp; Shijie 囍</footer>
 
 <script>
-// Scroll reveal
+// --- SCROLL ANIMATION ---
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) e.target.classList.add("visible");
@@ -527,16 +367,33 @@ const obs = new IntersectionObserver(entries => {
 });
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-// --- IMPROVED SCRATCH LOGIC ---
+// --- ROBUST SCRATCH CARD LOGIC ---
 const allCards = document.querySelectorAll(".scratch-card");
-let hasChosen = false; // Global flag
+let hasChosen = false; 
+
+// Helper: Throttle to save CPU
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
 
 allCards.forEach((card, index) => {
   const canvas = card.querySelector("canvas");
   const ctx = canvas.getContext("2d", { willReadFrequently: true });
-  let scratching = false;
+  let isScratching = false;
+  let lastX = 0;
+  let lastY = 0;
 
-  function resize() {
+  // Initialize Canvas
+  function initCard() {
     const dpr = Math.max(1, window.devicePixelRatio || 1);
     const w = card.offsetWidth;
     const h = card.offsetHeight;
@@ -546,123 +403,154 @@ allCards.forEach((card, index) => {
     canvas.width = Math.floor(w * dpr);
     canvas.height = Math.floor(h * dpr);
 
-    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.scale(dpr, dpr);
 
-    // Initial Fill
+    // 1. Base Gradient
     const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, "#e3e3e3");
-    grad.addColorStop(0.3, "#ffffff");
-    grad.addColorStop(0.6, "#d1d8e0");
-    grad.addColorStop(1, "#f5f6fa");
-
-    ctx.globalCompositeOperation = "source-over";
+    grad.addColorStop(0, "#dcdde1");
+    grad.addColorStop(0.2, "#f5f6fa");
+    grad.addColorStop(0.5, "#b2bec3");
+    grad.addColorStop(0.8, "#f5f6fa");
+    grad.addColorStop(1, "#dcdde1");
+    
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, w, h);
 
-    // Decorative speckles
-    ctx.globalAlpha = 0.4;
-    for (let i = 0; i < 200; i++){
+    // 2. Add Noise
+    ctx.globalCompositeOperation = "source-over";
+    const noiseAmount = 3000;
+    for(let i=0; i<noiseAmount; i++){
+       ctx.fillStyle = Math.random() > 0.5 ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.1)";
+       ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
+    }
+
+    // 3. Add Logos/Speckles
+    ctx.globalAlpha = 0.6;
+    for (let i = 0; i < 40; i++){
       const x = Math.random() * w;
       const y = Math.random() * h;
-      const r = Math.random() * 1.2;
+      const r = Math.random() * 3;
       ctx.beginPath();
       ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = (Math.random() > 0.5) ? "#b89b3e" : "#00b894";
+      ctx.fillStyle = "#b89b3e";
       ctx.fill();
     }
     ctx.globalAlpha = 1;
-    // Don't reset opacity here if it was already cleared
-    if(canvas.classList.contains('revealed')) canvas.style.opacity = 0;
-    else canvas.style.opacity = 1;
   }
 
-  resize();
-  window.addEventListener("resize", resize);
-
-  // Lock logic
+  // Initial draw
+  initCard();
+  
   function lockOthers() {
     if (hasChosen) return;
     hasChosen = true;
     allCards.forEach(c => {
-      if (c !== card) {
-        c.classList.add('locked-out');
-      }
+      if (c !== card) c.classList.add('locked-out');
     });
   }
 
   function scratch(x, y) {
     ctx.globalCompositeOperation = "destination-out";
+    ctx.lineWidth = 25; 
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    
     ctx.beginPath();
-    ctx.arc(x, y, 18, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    
+    lastX = x; 
+    lastY = y;
   }
 
   function getLocalXY(e){
     const r = canvas.getBoundingClientRect();
-    return { x: e.clientX - r.left, y: e.clientY - r.top };
+    return { 
+      x: e.clientX - r.left, 
+      y: e.clientY - r.top 
+    };
   }
 
-  function checkReveal() {
-    const w = canvas.width, h = canvas.height;
-    const sampleStep = 12; 
-    const img = ctx.getImageData(0, 0, w, h).data;
+  const checkReveal = throttle(() => {
+    const rawW = canvas.width; 
+    const rawH = canvas.height;
+    
+    // Safety check if canvas is 0 size (hidden)
+    if (rawW === 0 || rawH === 0) return;
+
+    const img = ctx.getImageData(0, 0, rawW, rawH).data;
     let total = 0, cleared = 0;
-    for (let y = 0; y < h; y += sampleStep) {
-      for (let x = 0; x < w; x += sampleStep) {
-        const idx = (y * w + x) * 4 + 3;
-        total++;
-        if (img[idx] === 0) cleared++;
-      }
-    }
-    if (cleared / total > 0.35) {
-      canvas.style.opacity = 0;
-      canvas.style.pointerEvents = "none";
-      canvas.classList.add('revealed');
-    }
-  }
+    const step = 20; // High step for performance
 
-  // Event Handlers
+    for (let i = 0; i < img.length; i += step * 4) {
+      total++;
+      if (img[i+3] === 0) cleared++;
+    }
+
+    if (cleared / total > 0.45) {
+      canvas.style.transition = "opacity 0.6s ease";
+      canvas.style.opacity = 0;
+      canvas.style.pointerEvents = "none"; // Disables interactions so they can click through if needed
+      card.classList.add('revealed');
+    }
+  }, 200);
+
+  // --- POINTER EVENTS (Solves Scrolling Issue) ---
+  
+  // 1. Pointer Down
   canvas.addEventListener("pointerdown", (e) => {
-    // If user has already chosen ANOTHER card, prevent interaction here
+    // If user has picked another card, ignore
     if (hasChosen && !card.classList.contains('active-choice')) return;
 
-    // First time touching THIS card? Lock the others!
+    // Lock others immediately
     if (!hasChosen) {
       card.classList.add('active-choice');
       lockOthers();
     }
 
-    scratching = true;
+    // IMPORTANT: Capture the pointer so if they slide off the card, we still control it
     canvas.setPointerCapture(e.pointerId);
+    
+    isScratching = true;
     const p = getLocalXY(e);
-    scratch(p.x, p.y);
-    checkReveal();
+    lastX = p.x; 
+    lastY = p.y;
+    
+    // Dot on tap
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(lastX, lastY, 12, 0, Math.PI*2);
+    ctx.fill();
   });
 
+  // 2. Pointer Move
   canvas.addEventListener("pointermove", (e) => {
-    if (!scratching) return;
+    if (!isScratching) return;
+    
+    // Prevent default browser scrolling logic
+    e.preventDefault(); 
+    
     const p = getLocalXY(e);
     scratch(p.x, p.y);
     checkReveal();
   });
 
-  canvas.addEventListener("pointerup", () => scratching = false);
-  canvas.addEventListener("pointercancel", () => scratching = false);
+  // 3. Pointer Up/Cancel
+  canvas.addEventListener("pointerup", () => { isScratching = false; });
+  canvas.addEventListener("pointercancel", () => { isScratching = false; });
 });
 
-// RSVP Logic
+// --- RSVP FORM LOGIC ---
 const form = document.getElementById('rsvp-form');
 const statusMsg = document.getElementById('form-status');
 const submitBtn = document.getElementById('submit-btn');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  
   const originalBtnText = submitBtn.innerText;
   submitBtn.innerText = "Sending...";
   submitBtn.disabled = true;
-
-  // YOUR SCRIPT URL
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwooJOl5iS98194GicONSQ_juCVQEKHYEUivfV9AR4GK1Zjnqfr54MYdPULIefGyICY/exec'; 
 
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
