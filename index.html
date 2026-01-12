@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The Union of 2026, You Are My 世界!| Raynard & Shijie</title>
+<title>The Union of 2026 | Raynard & Shijie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -121,18 +121,14 @@ header{
   padding:14px 20px;
   display:flex;
   align-items:center;
-  /* Since logo is gone, this will push nav to the right if we use flex-end, 
-     or keep it left with space-between if it's the only child. 
-     To center the nav instead, use justify-content: center. 
-     Keeping space-between for now so it stays on left/spaced naturally. */
-  justify-content:space-between; 
+  justify-content:space-between;
   gap: 18px;
 }
 
 nav a{
   color:#cfd6d6;
   text-decoration:none;
-  margin-right:22px; /* Changed from margin-left to margin-right for better spacing since it's first */
+  margin-right:22px;
   font-size:14px;
   letter-spacing: 0.6px;
 }
@@ -200,7 +196,7 @@ section{
 
 .hero h1{
   font-family: Cinzel, serif;
-  font-size:24px;
+  font-size:18px;
   letter-spacing:4px;
   color: rgba(246,231,200,0.88);
   margin: 0;
@@ -434,7 +430,7 @@ footer{
     <span class="dot"></span>
     Tropical Lunch Celebration
   </div>
-  <h1>THE UNION OF 2026, You Are My 世界!</h1>
+  <h1>THE UNION OF 2026</h1>
   <h2 class="tropical-text">Raynard & Shijie</h2>
   <h3>20 Jun 2026 (Sat) · 11am - 2pm</h3>
   <div class="subline">
@@ -499,14 +495,25 @@ footer{
     <form id="rsvp-form">
       <input name="Name" placeholder="Your Name" required>
       
-      <select name="Attendance">
+      <select name="Attendance" required>
+        <option value="" disabled selected>Will you be attending?</option>
         <option value="Will Attend">Will Attend</option>
         <option value="Decline">Regretfully Decline</option>
       </select>
       
-      <input name="Guests" type="number" placeholder="Number of Guests (Max 3)" min="0" max="3">
+      <select name="Guests">
+        <option value="Me Only">Me Only</option>
+        <option value="Me + 1">Me + 1 Guest</option>
+        <option value="Me + 2">Me + 2 Guests</option>
+        <option value="Me + 3">Me + 3 Guests</option>
+      </select>
       
-      <input name="Furbabies" type="number" placeholder="Number of Furbabies (Max 3)" min="0" max="3">
+      <select name="Furbabies">
+        <option value="0" selected>0 Furbabies</option>
+        <option value="1">1 Furbaby</option>
+        <option value="2">2 Furbabies</option>
+        <option value="3">3 Furbabies</option>
+      </select>
       
       <input name="Dietary" placeholder="Dietary Restrictions">
       <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
@@ -667,7 +674,7 @@ form.addEventListener('submit', e => {
   submitBtn.innerText = "Sending...";
   submitBtn.disabled = true;
 
-  // Uses the URL you provided
+  // IMPORTANT: PASTE YOUR GOOGLE SCRIPT WEB APP URL HERE
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwooJOl5iS98194GicONSQ_juCVQEKHYEUivfV9AR4GK1Zjnqfr54MYdPULIefGyICY/exec'; 
 
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
