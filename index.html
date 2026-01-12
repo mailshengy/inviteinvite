@@ -121,17 +121,22 @@ header{
   padding:14px 20px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  /* Since logo is gone, this will push nav to the right if we use flex-end, 
+     or keep it left with space-between if it's the only child. 
+     To center the nav instead, use justify-content: center. 
+     Keeping space-between for now so it stays on left/spaced naturally. */
+  justify-content:space-between; 
   gap: 18px;
 }
 
 nav a{
   color:#cfd6d6;
   text-decoration:none;
-  margin-left:22px;
+  margin-right:22px; /* Changed from margin-left to margin-right for better spacing since it's first */
   font-size:14px;
   letter-spacing: 0.6px;
 }
+nav a:last-child{ margin-right: 0; }
 nav a:hover{ color: var(--leaf); }
 
 section{
@@ -164,10 +169,6 @@ section{
   -webkit-background-clip:text;
   color: transparent;
 }
-
-/* Emblem */
-.emblem{ width:72px; height:72px; flex: 0 0 auto; }
-.emblem svg{ width:100%; height:100%; }
 
 /* Hero */
 .hero{
@@ -369,7 +370,6 @@ footer{
 @media (max-width: 680px){
   .hero h2{ font-size: 44px; }
   .card{ padding: 28px; }
-  nav a{ margin-left: 14px; }
 }
 </style>
 </head>
@@ -379,7 +379,6 @@ footer{
 <div class="tropical-bg"></div>
 <div class="fireflies"></div>
 
-<!-- Palm silhouettes -->
 <svg class="palm left" viewBox="0 0 200 200" aria-hidden="true">
   <defs>
     <linearGradient id="palmGlowL" x1="0" y1="0" x2="1" y2="1">
@@ -421,29 +420,6 @@ footer{
 
 <header>
   <div class="header-inner">
-    <div class="emblem" aria-hidden="true">
-      <svg viewBox="0 0 120 120">
-        <defs>
-          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#1fe0a2"/>
-            <stop offset="35%" stop-color="#29c7ff"/>
-            <stop offset="70%" stop-color="#f6e7c8"/>
-            <stop offset="100%" stop-color="#ff6b6b"/>
-          </linearGradient>
-          <filter id="noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/>
-            <feColorMatrix type="saturate" values="0"/>
-          </filter>
-        </defs>
-        <g transform="translate(60,60)">
-          <circle r="50" fill="none" stroke="url(#g)" stroke-width="2"/>
-          <circle r="36" fill="none" stroke="url(#g)" stroke-width="1" opacity="0.55"/>
-          <circle r="22" fill="none" stroke="url(#g)" stroke-width="1" opacity="0.35"/>
-          <text y="8" text-anchor="middle" font-family="Cinzel" font-size="34" fill="url(#g)" filter="url(#noise)">R S</text>
-        </g>
-      </svg>
-    </div>
-
     <nav>
       <a href="#story">Story</a>
       <a href="#details">Details</a>
@@ -460,7 +436,7 @@ footer{
   </div>
   <h1>THE UNION OF 2026</h1>
   <h2 class="tropical-text">Raynard & Shijie</h2>
-  <h3>20 Jun 2026 (Sat) · 12pm to 3pm</h3>
+  <h3>20 Jun 2026 (Sat) · 11am - 2pm</h3>
   <div class="subline">
     <span>Wheeler&#39;s Tropikana</span>
     <span>•</span>
@@ -493,7 +469,7 @@ footer{
       </div>
       <div>
         <div class="label">Time</div>
-        <div class="value">Lunch, 12pm to 3pm</div>
+        <div class="value">Lunch, 11am - 2pm</div>
       </div>
       <div>
         <div class="label">Venue</div>
@@ -520,11 +496,6 @@ footer{
     <h3 class="tropical-text">RSVP</h3>
     <div class="divider"></div>
 
-   <section id="rsvp" class="reveal">
-  <div class="card">
-    <h3 class="tropical-text">RSVP</h3>
-    <div class="divider"></div>
-
     <form id="rsvp-form">
       <input name="Name" placeholder="Your Name" required>
       
@@ -533,15 +504,16 @@ footer{
         <option value="Decline">Regretfully Decline</option>
       </select>
       
-      <input name="Guests" type="number" placeholder="Number of Guests" min="0">
+      <input name="Guests" type="number" placeholder="Number of Guests (Max 3)" min="0" max="3">
+      
+      <input name="Furbabies" type="number" placeholder="Number of Furbabies (Max 3)" min="0" max="3">
+      
       <input name="Dietary" placeholder="Dietary Restrictions">
       <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
       
       <button type="submit" id="submit-btn">Submit RSVP</button>
       <p id="form-status" style="margin-top:10px; font-size:14px; color:#1fe0a2; display:none;"></p>
     </form>
-  </div>
-</section>
   </div>
 </section>
 
@@ -681,7 +653,6 @@ document.querySelectorAll(".scratch-card").forEach(card => {
   canvas.addEventListener("pointerup", () => scratching = false);
   canvas.addEventListener("pointercancel", () => scratching = false);
 });
-  // ... scratch card code ends here ...
 
 // RSVP Logic
 const form = document.getElementById('rsvp-form');
@@ -696,7 +667,7 @@ form.addEventListener('submit', e => {
   submitBtn.innerText = "Sending...";
   submitBtn.disabled = true;
 
-  // REPLACE THIS URL WITH YOUR GOOGLE SCRIPT WEB APP URL FROM STEP 2
+  // Uses the URL you provided
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwooJOl5iS98194GicONSQ_juCVQEKHYEUivfV9AR4GK1Zjnqfr54MYdPULIefGyICY/exec'; 
 
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
