@@ -520,17 +520,28 @@ footer{
     <h3 class="tropical-text">RSVP</h3>
     <div class="divider"></div>
 
-    <form>
-      <input placeholder="Your Name" required>
-      <select>
-        <option>Will Attend</option>
-        <option>Regretfully Decline</option>
+   <section id="rsvp" class="reveal">
+  <div class="card">
+    <h3 class="tropical-text">RSVP</h3>
+    <div class="divider"></div>
+
+    <form id="rsvp-form">
+      <input name="Name" placeholder="Your Name" required>
+      
+      <select name="Attendance">
+        <option value="Will Attend">Will Attend</option>
+        <option value="Decline">Regretfully Decline</option>
       </select>
-      <input type="number" placeholder="Number of Guests" min="0">
-      <input placeholder="Dietary Restrictions">
-      <textarea rows="3" placeholder="Message for the couple"></textarea>
-      <button type="submit">Submit RSVP</button>
+      
+      <input name="Guests" type="number" placeholder="Number of Guests" min="0">
+      <input name="Dietary" placeholder="Dietary Restrictions">
+      <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
+      
+      <button type="submit" id="submit-btn">Submit RSVP</button>
+      <p id="form-status" style="margin-top:10px; font-size:14px; color:#1fe0a2; display:none;"></p>
     </form>
+  </div>
+</section>
   </div>
 </section>
 
@@ -669,6 +680,40 @@ document.querySelectorAll(".scratch-card").forEach(card => {
 
   canvas.addEventListener("pointerup", () => scratching = false);
   canvas.addEventListener("pointercancel", () => scratching = false);
+});
+  // ... scratch card code ends here ...
+
+// RSVP Logic
+const form = document.getElementById('rsvp-form');
+const statusMsg = document.getElementById('form-status');
+const submitBtn = document.getElementById('submit-btn');
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  
+  // Change button text to indicate processing
+  const originalBtnText = submitBtn.innerText;
+  submitBtn.innerText = "Sending...";
+  submitBtn.disabled = true;
+
+  // REPLACE THIS URL WITH YOUR GOOGLE SCRIPT WEB APP URL FROM STEP 2
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwooJOl5iS98194GicONSQ_juCVQEKHYEUivfV9AR4GK1Zjnqfr54MYdPULIefGyICY/exec'; 
+
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => {
+      statusMsg.innerText = "Thank you! Your RSVP has been received.";
+      statusMsg.style.display = "block";
+      submitBtn.innerText = "Sent!";
+      form.reset();
+    })
+    .catch(error => {
+      statusMsg.innerText = "Oops! Something went wrong. Please try again.";
+      statusMsg.style.color = "#ff6b6b"; // Red for error
+      statusMsg.style.display = "block";
+      submitBtn.innerText = originalBtnText;
+      submitBtn.disabled = false;
+      console.error('Error!', error.message);
+    });
 });
 </script>
 
