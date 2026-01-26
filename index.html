@@ -168,6 +168,70 @@ section{
   margin: 18px 0 26px; opacity: 0.5;
 }
 
+/* --- CAROUSEL STYLES --- */
+.carousel-wrap {
+  position: relative;
+  padding: 0 10px;
+}
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 0 30px 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* Hide Scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+.carousel-track::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 280px;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border: 4px solid #fff;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Carousel Navigation Buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: var(--leaf-deep);
+  font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: var(--leaf-deep); color: #fff; }
+.nav-btn.prev { left: -20px; }
+.nav-btn.next { right: -20px; }
+
+@media(max-width: 680px) {
+  .nav-btn { display: none; } /* Hide buttons on mobile, swipe is better */
+  .carousel-item { width: 85vw; height: 55vh; }
+  .carousel-track { padding-left: 5vw; padding-right: 5vw; }
+}
+
 /* Info Grid */
 .info-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:30px; }
 .label{ font-size:11px; letter-spacing:1px; color: var(--gold-main); text-transform: uppercase; font-weight: 700; }
@@ -267,6 +331,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
   <div class="header-inner">
     <nav>
       <a href="#story">Story</a>
+      <a href="#gallery">Moments</a>
       <a href="#details">Details</a>
       <a href="#rsvp">RSVP</a>
       <a href="#lucky">Lucky Draw</a>
@@ -288,6 +353,28 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
     <div class="divider"></div>
     <p>We met in school as orientation group leaders. Two people guiding others, yet slowly finding each other. Friendship formed, trust followed, and a lifelong promise was made.</p>
     <p class="gold-text">良缘天定 · 百年好合</p>
+  </div>
+</section>
+
+<section id="gallery" class="reveal">
+  <h3 class="tropical-text" style="text-align:center; font-family:Playfair Display, serif; font-size:32px; margin-bottom:20px;">Sweet Memories</h3>
+  
+  <div class="carousel-wrap">
+    <button class="nav-btn prev" id="btn-prev">❮</button>
+    <div class="carousel-track" id="track">
+      <div class="carousel-item"><img src="pic/1.jpeg" alt="Photo 1"></div>
+      <div class="carousel-item"><img src="pic/2.jpeg" alt="Photo 2"></div>
+      <div class="carousel-item"><img src="pic/3.jpeg" alt="Photo 3"></div>
+      <div class="carousel-item"><img src="pic/4.jpeg" alt="Photo 4"></div>
+      <div class="carousel-item"><img src="pic/5.jpeg" alt="Photo 5"></div>
+      <div class="carousel-item"><img src="pic/6.jpeg" alt="Photo 6"></div>
+      <div class="carousel-item"><img src="pic/7.jpeg" alt="Photo 7"></div>
+      <div class="carousel-item"><img src="pic/8.jpeg" alt="Photo 8"></div>
+      <div class="carousel-item"><img src="pic/9.jpeg" alt="Photo 9"></div>
+      <div class="carousel-item"><img src="pic/10.jpeg" alt="Photo 10"></div>
+      <div class="carousel-item"><img src="pic/11.jpeg" alt="Photo 11"></div>
+    </div>
+    <button class="nav-btn next" id="btn-next">❯</button>
   </div>
 </section>
 
@@ -366,6 +453,18 @@ const obs = new IntersectionObserver(entries => {
   });
 });
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+
+// --- CAROUSEL LOGIC ---
+const track = document.getElementById('track');
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+
+btnPrev.addEventListener('click', () => {
+  track.scrollBy({ left: -300, behavior: 'smooth' });
+});
+btnNext.addEventListener('click', () => {
+  track.scrollBy({ left: 300, behavior: 'smooth' });
+});
 
 // --- ROBUST SCRATCH CARD LOGIC ---
 const allCards = document.querySelectorAll(".scratch-card");
