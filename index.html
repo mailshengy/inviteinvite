@@ -436,7 +436,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 14px; color: var(--tex
 </header>
 
 <section class="hero reveal">
-  <div class="hero-badge"><span class="dot"></span> Level 2026 Unlocked</div>
+  <div class="hero-badge"><span class="dot"></span>2026 Unlocked</div>
   <h1>THE UNION OF 2026, Yu Are My 世界!</h1>
   <h2 class="tropical-text">Raynard & Shijie</h2>
   <h3>20 Jun 2026 (Sat) · 11am - 2pm</h3>
@@ -514,11 +514,11 @@ footer{ text-align:center; padding: 60px 20px; font-size: 14px; color: var(--tex
         <option value="Decline">DECLINE MISSION</option>
       </select>
       <select name="Guests">
-        <option value="" disabled selected>ADDITIONAL PLAYERS?</option>
-        <option value="0">SOLO PLAYER</option>
-        <option value="1">PLAYER + 1</option>
-        <option value="2">PLAYER + 2</option>
-        <option value="3">PLAYER + 3</option>
+        <option value="" disabled selected>ADDITIONAL GUESTS?</option>
+        <option value="0">JUST ME.</option>
+        <option value="1">ME + 1</option>
+        <option value="2">ME + 2</option>
+        <option value="3">ME + 3</option>
       </select>
       <select name="Furbabies">
         <option value="0" selected>0 FURBABIES</option>
@@ -552,7 +552,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 14px; color: var(--tex
   </div>
 </section>
 
-<footer>GAME OVER // PRESS START TO CONTINUE <br> 囍 Raynard &amp; Shijie 囍</footer>
+<footer><br> 囍 Raynard &amp; Shijie 囍</footer>
 
 <script>
 // --- SCROLL ANIMATION ---
@@ -819,7 +819,7 @@ form.addEventListener('submit', e => {
 
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     .then(response => {
-      statusMsg.innerText = "MISSION ACCOMPLISHED. RSVP CONFIRMED.";
+      statusMsg.innerText = "THANK YOU. RSVP CONFIRMED.";
       statusMsg.style.display = "block";
       submitBtn.innerText = "CONFIRMED";
       form.reset();
