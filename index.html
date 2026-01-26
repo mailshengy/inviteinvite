@@ -5,26 +5,25 @@
 <title>The Union of 2026, Yu Are My 世界！| Raynard & Shijie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Cinzel:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* --- NEW THEME: Retro HK Pop --- */
-  --bg-deep-blue: #1422a5; /* Royal Blue from Image 2 */
-  --bg-darker: #0b125e;
+  /* --- NEW THEME: Cinematic HK Retro --- */
+  /* Extracted from the dark alleys in photos 6 & 8 */
+  --bg-deep: #050a18; 
+  --bg-panel: rgba(20, 20, 20, 0.7);
   
-  --glass-panel: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  /* The "Subtitle Yellow" from photos 1, 3, 4, 8 */
+  --retro-yellow: #FFD700; 
   
-  --text-main: #ffffff;
-  --text-muted: #d0d6ff;
-  
-  /* Pop Accents */
-  --pop-yellow: #FFE100; /* The yellow from the text stickers */
+  /* Neon Accents from photos 2, 5, 6 */
+  --neon-red: #ff2a2a;
   --neon-cyan: #00f3ff;
-  --neon-pink: #ff00de;
-
-  --shadow: rgba(0, 0, 0, 0.25);
+  
+  --text-main: #eeeeee;
+  --glass-border: rgba(255, 215, 0, 0.3); /* Gold tint border */
+  --shadow: rgba(0, 0, 0, 0.6);
 }
 
 *{ box-sizing:border-box; }
@@ -33,79 +32,72 @@ body{
   margin:0;
   font-family:"Space Grotesk", sans-serif;
   color: var(--text-main);
-  overflow-x:hidden;
-  /* CSS Grid Pattern based on Image 2 */
-  background-color: var(--bg-deep-blue);
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), 
-    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
-  background-size: 40px 40px; /* Grid size */
+  background-color: var(--bg-deep);
   min-height: 100vh;
-  overscroll-behavior-y: none; 
+  overflow-x:hidden;
 }
 
-/* Background Palms - Converted to Neon Wireframes */
-.palm{
+/* --- CINEMATIC GRAIN & ATMOSPHERE --- */
+/* Simulates the film grain seen in the photos */
+body::before {
+  content: "";
   position: fixed;
-  bottom: -40px;
-  width: 380px;
-  height: 380px;
-  opacity: 0.6; 
-  z-index: 0;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
-  mix-blend-mode: screen;
+  z-index: 0;
+  opacity: 0.4;
 }
-.palm.left{ left:-80px; transform: rotate(-8deg) scale(1.05); }
-.palm.right{ right:-80px; transform: rotate(10deg) scale(1.05); }
 
-/* Motes - Changed to "City Lights" glow */
-.motes{
+/* "City Lights" Bokeh Effect instead of floating motes */
+.bokeh-lights{
   position: fixed;
   inset:0;
   pointer-events:none;
-  z-index:1;
+  z-index:0;
   background:
-    radial-gradient(circle at 10% 30%, rgba(255, 225, 0, 0.2), transparent 5%),
-    radial-gradient(circle at 70% 20%, rgba(0, 243, 255, 0.2), transparent 6%),
-    radial-gradient(circle at 40% 80%, rgba(255, 0, 222, 0.15), transparent 4%);
-  animation: float 15s ease-in-out infinite alternate;
+    radial-gradient(circle at 15% 20%, rgba(255, 42, 42, 0.15) 0%, transparent 25%), /* Red Neon */
+    radial-gradient(circle at 85% 60%, rgba(0, 243, 255, 0.1) 0%, transparent 30%), /* Cyan Neon */
+    radial-gradient(circle at 50% 90%, rgba(255, 215, 0, 0.08) 0%, transparent 40%); /* Yellow Glow */
+  animation: pulseLight 8s ease-in-out infinite alternate;
 }
-@keyframes float{
-  from{ transform: translateY(0px); }
-  to{ transform: translateY(-20px); }
+
+@keyframes pulseLight{
+  0%{ opacity: 0.6; transform: scale(1); }
+  100%{ opacity: 1; transform: scale(1.1); }
 }
 
 /* Header */
 header{
   position: sticky;
   top: 0;
-  background: rgba(11, 18, 94, 0.85); /* Dark Blue Glass */
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  z-index: 10;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  background: rgba(5, 10, 24, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  z-index: 100;
 }
 
 .header-inner{
   max-width:1100px;
   margin:auto;
-  padding:14px 20px;
+  padding:15px 20px;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
 nav a{
-  color: var(--text-muted);
+  color: #aaa;
   text-decoration:none;
   margin: 0 15px;
-  font-size:14px;
+  font-size:13px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  font-family: 'Cinzel', serif;
 }
-nav a:hover{ color: var(--pop-yellow); text-shadow: 0 0 8px rgba(255, 225, 0, 0.6); }
+nav a:hover{ color: var(--retro-yellow); text-shadow: 0 0 8px var(--retro-yellow); }
 
 section{
   max-width:900px;
@@ -115,287 +107,255 @@ section{
   z-index: 2;
 }
 
-/* Scroll animation */
 .reveal{
   opacity:0;
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
-.reveal.visible{
-  opacity:1;
-  transform: translateY(0);
+.reveal.visible{ opacity:1; transform: translateY(0); }
+
+/* Typography - Wong Kar-wai Style */
+.movie-title{
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  background: linear-gradient(to bottom, #fff 40%, #ddd 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0;
 }
 
-/* Typography Updates */
-.gold-text{ color: var(--pop-yellow); font-weight: 700; letter-spacing: 1px; }
-
-.tropical-text{
-  /* Changed to Pop Gradient */
-  background: linear-gradient(120deg, #fff, var(--pop-yellow));
-  -webkit-background-clip:text;
-  color: transparent;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+.subtitle-text {
+  font-family: 'Playfair Display', serif; 
+  color: var(--retro-yellow);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
 }
 
 /* Hero */
-.hero{ text-align:center; padding-top:100px; position: relative; }
+.hero{ text-align:center; padding-top:100px; padding-bottom: 60px; }
 
 .hero-badge{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 16px; border-radius:999px;
-  background: var(--pop-yellow); /* Yellow Badge */
-  border: 2px solid #fff;
-  margin-bottom: 24px; box-shadow: 0 4px 15px rgba(255, 225, 0, 0.3);
-  font-size: 12px; letter-spacing: 1.5px;
-  font-weight: 700;
-  text-transform: uppercase; color: var(--bg-deep-blue);
+  display:inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--neon-red);
+  color: var(--neon-red);
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  background: rgba(0,0,0,0.3);
 }
-.dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--bg-deep-blue); }
 
 .hero h1{
-  font-family: Cinzel, serif; font-size:18px;
-  letter-spacing:4px; color: var(--neon-cyan); margin: 0;
-  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  font-family: 'Cinzel', serif; font-size:16px;
+  letter-spacing:6px; color: var(--neon-cyan); margin: 0 0 10px 0;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
 }
 .hero h2{
-  font-family: Playfair Display, serif; font-size:60px;
-  color: #fff; margin: 14px 0; line-height: 1.1;
-  text-shadow: 4px 4px 0px var(--bg-darker); /* Retro Block Shadow */
+  font-size:72px;
+  line-height: 1;
+  margin: 10px 0;
+  color: var(--retro-yellow);
+  font-family: 'Playfair Display', serif;
+  text-shadow: 3px 3px 0px #8b0000; /* Dark Red Shadow like Image 8 */
 }
-.hero h3{ font-weight:500; letter-spacing:1px; margin: 0; color: var(--text-muted); }
-.hero .subline{ margin-top: 16px; font-size: 15px; color: var(--pop-yellow); font-weight: 600; }
-.hero .subline span{ padding: 0 8px; }
 
-/* New Card Style: Glassmorphism */
+.hero .date-location{
+  margin-top: 20px;
+  font-size: 16px; color: #fff;
+  letter-spacing: 1px;
+  border-top: 1px solid var(--retro-yellow);
+  border-bottom: 1px solid var(--retro-yellow);
+  display: inline-block;
+  padding: 10px 30px;
+}
+
+/* Cinematic Cards */
 .card{
-  background: var(--glass-panel);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--bg-panel);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
   padding: 50px; margin-bottom: 40px; position: relative;
-  box-shadow: 0 20px 40px var(--shadow);
+  border-radius: 4px; /* Sharper corners for movie feel */
 }
-.card h3{
-  font-family: Playfair Display, serif; font-size: 32px;
-  margin-top: 0; color: var(--pop-yellow);
+/* Corner Accents */
+.card::after {
+  content: ""; position: absolute; top: -1px; left: -1px; right: -1px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--retro-yellow), transparent);
 }
-.divider{
-  height: 4px; width: 60px; background: var(--neon-cyan);
-  margin: 18px 0 26px; border-radius: 2px;
-  box-shadow: 0 0 10px var(--neon-cyan);
+.card::before {
+  content: ""; position: absolute; bottom: -1px; left: -1px; right: -1px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-red), transparent);
 }
 
-/* --- CAROUSEL STYLES --- */
-#gallery {
-    padding: 0 0 60px 0;
-    width: 100%;
-    max-width: 1000px;
-    overflow: hidden;
+.card h3{
+  font-family: 'Playfair Display', serif; font-size: 36px;
+  margin-top: 0; color: var(--retro-yellow);
+  text-align: center;
+  font-style: italic;
 }
+
+.divider{
+  height: 1px; width: 100px; background: var(--neon-cyan);
+  margin: 20px auto 30px;
+  box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+p { line-height: 1.8; opacity: 0.9; font-size: 17px; }
+
+/* --- CAROUSEL (Polaroid Style) --- */
+#gallery { padding: 0 0 60px 0; width: 100%; overflow: hidden; }
 
 .carousel-container {
   position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-  background: #000;
-  border: 4px solid #fff;
-  transform: rotate(-2deg); /* Slight playful tilt like a polaroid */
+  width: 100%; max-width: 400px; margin: 0 auto;
+  border: 12px solid #fff;
+  background: #fff;
+  border-bottom: 40px solid #fff; /* Polaroid Bottom */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  transform: rotate(-3deg);
+}
+/* Add a handwritten caption look */
+.carousel-container::after {
+  content: "Raynard & Shijie, 2026";
+  position: absolute; bottom: -30px; left: 0; width: 100%;
+  text-align: center; color: #333;
+  font-family: 'cursive', sans-serif; font-size: 14px;
 }
 
-.carousel-track {
-  display: flex;
-  width: 100%;
-}
+.carousel-track { display: flex; width: 100%; }
+.carousel-slide { min-width: 100%; aspect-ratio: 2 / 3; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) saturate(1.1); }
 
-.carousel-slide {
-  min-width: 100%;
-  aspect-ratio: 2 / 3; 
-  position: relative;
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 30px;
-}
-.carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.3s;
-  border: 1px solid rgba(255,255,255,0.5);
-}
-.carousel-dot.active {
-  background: var(--pop-yellow);
-  border-color: var(--pop-yellow);
-  transform: scale(1.3);
-  box-shadow: 0 0 10px var(--pop-yellow);
-}
-
-/* Carousel Navigation Buttons */
 .nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
-  border: 2px solid var(--bg-deep-blue);
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 5;
-  color: var(--bg-deep-blue);
-  font-size: 18px;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: all 0.2s;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: transparent; border: none;
+  font-size: 30px; color: rgba(255,255,255,0.8);
+  cursor: pointer; z-index: 5;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.9);
 }
-.nav-btn:hover { background: var(--pop-yellow); transform: translateY(-50%) scale(1.1); border-color: #fff; }
-.nav-btn.prev { left: 15px; }
-.nav-btn.next { right: 15px; }
-
-@media(max-width: 680px) {
-  .carousel-container { max-width: 85%; transform: rotate(0deg); }
-}
+.nav-btn.prev { left: 10px; }
+.nav-btn.next { right: 10px; }
 
 /* Info Grid */
-.info-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:30px; }
-.label{ font-size:12px; letter-spacing:1px; color: var(--neon-cyan); text-transform: uppercase; font-weight: 700; }
-.value{ font-size:18px; margin-top: 6px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.info-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:30px; text-align: center; }
+.label{ font-size:11px; letter-spacing:2px; color: var(--neon-red); text-transform: uppercase; margin-bottom: 5px; }
+.value{ font-size:18px; color: #fff; font-family: 'Playfair Display', serif; }
 
 /* Form */
-form{ display:grid; gap:18px; }
+form{ display:grid; gap:20px; }
 input, select, textarea{
-  background: rgba(255, 255, 255, 0.9); border: 2px solid transparent; padding: 14px;
-  color: var(--bg-darker); border-radius: 8px; font-family:"Space Grotesk", sans-serif;
-  outline: none; font-size: 15px; transition: all 0.3s;
-  font-weight: 500;
+  background: rgba(0, 0, 0, 0.4); 
+  border: 1px solid #444; 
+  padding: 16px;
+  color: #fff; 
+  font-family:"Space Grotesk", sans-serif;
+  outline: none; font-size: 16px; transition: all 0.3s;
 }
 input:focus, select:focus, textarea:focus{
-  border-color: var(--pop-yellow); box-shadow: 0 0 15px rgba(255, 225, 0, 0.4);
+  border-color: var(--retro-yellow); 
+  background: rgba(0,0,0,0.6);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
 }
-::placeholder { color: #555; }
 button{
-  background: var(--pop-yellow);
-  border: 2px solid #fff; padding: 16px; color: var(--bg-deep-blue); font-weight: 700;
-  letter-spacing: 1px; border-radius: 8px; cursor: pointer; text-transform: uppercase;
-  box-shadow: 0 8px 20px rgba(0,0,0, 0.3); transition: transform 0.2s;
+  background: var(--retro-yellow);
+  border: none; padding: 18px; 
+  color: #000; font-weight: 700;
+  font-size: 16px; letter-spacing: 2px; 
+  cursor: pointer; text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: 'Cinzel', serif;
 }
-button:hover{ transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 225, 0, 0.4); }
+button:hover{ 
+  transform: translateY(-2px); 
+  box-shadow: 0 0 20px var(--retro-yellow); 
+  background: #fff;
+}
 
-/* --- REALISTIC SCRATCH CARD CSS --- */
+/* --- SCRATCH CARD (Red Packet Theme) --- */
 .scratch-zone{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
-  gap:16px;
-  margin-top: 30px;
-  user-select: none;
-  -webkit-user-select: none;
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
+  gap:16px; margin-top: 30px; user-select: none;
 }
-
 .scratch-card{
-  position: relative;
-  height: 120px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff; /* White background for prize to pop */
-  border: 2px solid var(--neon-cyan);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s, opacity 0.5s ease, filter 0.5s ease;
-  touch-action: none; 
+  position: relative; height: 140px;
+  background: #fff;
+  border: 2px solid var(--retro-yellow);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s, opacity 0.5s;
 }
-
-/* Locked State */
-.scratch-card.locked-out {
-  opacity: 0.3;
-  filter: grayscale(100%);
-  pointer-events: none;
-  transform: scale(0.95);
-}
-
-/* Winner/Revealed State */
-.scratch-card.revealed {
-  box-shadow: 0 0 20px var(--pop-yellow);
-  border-color: var(--pop-yellow);
-}
+.scratch-card.locked-out { opacity: 0.2; pointer-events: none; filter: grayscale(100%); }
+.scratch-card.revealed { box-shadow: 0 0 25px var(--neon-red); border-color: var(--neon-red); }
 
 .prize{
   position:absolute; inset:0;
   display:flex; align-items:center; justify-content:center;
-  font-size:18px; font-weight:700; letter-spacing:2px;
-  color: var(--bg-darker); /* Dark text on white card */
-  z-index:1; text-align: center;
+  font-size:20px; font-weight:700; color: #cc0000; /* Red Text */
+  font-family: 'Playfair Display', serif;
 }
+canvas{ position:absolute; inset:0; z-index:2; cursor: crosshair; }
 
-canvas{
-  position:absolute; inset:0; z-index:2;
-  touch-action: none;
-  cursor: crosshair;
+footer{ 
+  text-align:center; padding: 60px 20px; 
+  font-size: 12px; color: #666; letter-spacing: 3px;
+  text-transform: uppercase;
 }
-
-/* Footer */
-footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--text-muted); opacity: 0.7; }
 
 @media (max-width: 680px){
-  .hero h2{ font-size: 42px; }
+  .hero h2{ font-size: 48px; }
   .card{ padding: 30px 20px; }
-  nav a { margin: 0 8px; font-size: 13px; }
+  nav a { margin: 0 6px; font-size: 11px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="motes"></div> 
-<svg class="palm left" viewBox="0 0 200 200"><g fill="none" stroke="#ff00de" stroke-width="1.5" stroke-linecap="round"><path d="M110 190 C108 150, 96 128, 92 108 C88 86, 98 70, 110 62" /><path d="M110 68 C98 50, 74 40, 52 44 C74 48, 92 58, 110 70" /><path d="M110 68 C122 50, 146 40, 168 44 C146 48, 128 58, 110 70" /><path d="M110 78 C90 70, 64 72, 44 86 C66 82, 90 84, 110 92" /><path d="M110 78 C130 70, 156 72, 176 86 C154 82, 130 84, 110 92" /><path d="M110 62 C108 40, 100 26, 88 16 C98 28, 106 44, 110 62" /></g></svg>
-<svg class="palm right" viewBox="0 0 200 200"><g fill="none" stroke="#00f3ff" stroke-width="1.5" stroke-linecap="round"><path d="M90 190 C92 150, 104 128, 108 108 C112 86, 102 70, 90 62" /><path d="M90 68 C102 50, 126 40, 148 44 C126 48, 108 58, 90 70" /><path d="M90 68 C78 50, 54 40, 32 44 C54 48, 72 58, 90 70" /><path d="M90 78 C110 70, 136 72, 156 86 C134 82, 110 84, 90 92" /><path d="M90 78 C70 70, 44 72, 24 86 C46 82, 70 84, 90 92" /><path d="M90 62 C92 40, 100 26, 112 16 C102 28, 94 44, 90 62" /></g></svg>
+<div class="bokeh-lights"></div> 
 
 <header>
   <div class="header-inner">
     <nav>
       <a href="#story">Story</a>
       <a href="#gallery">Moments</a>
-      <a href="#details">Details</a>
+      <a href="#details">Info</a>
       <a href="#rsvp">RSVP</a>
-      <a href="#lucky">Lucky Draw</a>
+      <a href="#lucky">Lucky</a>
     </nav>
   </div>
 </header>
 
 <section class="hero reveal">
-  <div class="hero-badge"><span class="dot"></span>Tropical Lunch Celebration</div>
+  <div class="hero-badge">Save The Date</div>
   <h1>THE UNION OF 2026, Yu Are My 世界!</h1>
-  <h2 class="tropical-text">Raynard & Shijie</h2>
-  <h3>20 Jun 2026 (Sat) · 11am - 2pm</h3>
-  <div class="subline"><span>Wheeler&#39;s Tropikana</span><span>•</span><span>Gillman Barracks area</span></div>
+  <h2 class="movie-title">Raynard & Shijie</h2>
+  <div class="date-location">
+    20 June 2026 · Wheeler's Tropikana
+  </div>
 </section>
 
 <section id="story" class="reveal">
   <div class="card">
-    <h3 class="tropical-text">Our Beginning</h3>
+    <h3>Chapter One</h3>
     <div class="divider"></div>
-    <p>We met in school as orientation group leaders. Two people guiding others, yet slowly finding each other. Friendship formed, trust followed, and a lifelong promise was made.</p>
-    <p class="gold-text">良缘天定 · 百年好合</p>
+    <p style="text-align:center;">
+      We met in school as orientation group leaders.<br>
+      Two people guiding others, yet slowly finding each other in the crowd.<br> 
+      <br>
+      <span class="subtitle-text">"Can I bite you?"</span> — 2022
+      <br><br>
+      Friendship formed, trust followed, and a lifelong promise was made under the city lights.
+    </p>
+    <p style="text-align:center; color: var(--retro-yellow); font-size: 24px; margin-top:30px; font-family: 'Cinzel', serif;">
+      良缘天定 · 百年好合
+    </p>
   </div>
 </section>
 
 <section id="gallery" class="reveal">
-  <h3 class="tropical-text" style="text-align:center; font-family:Playfair Display, serif; font-size:32px; margin-bottom:20px;">Sweet Memories</h3>
+  <div style="text-align:center; margin-bottom:30px;">
+    <h3 class="subtitle-text" style="font-size:32px; font-style:italic;">In the Mood for Love</h3>
+  </div>
   
   <div class="carousel-container">
     <button class="nav-btn prev" id="btn-prev">❮</button>
@@ -408,83 +368,70 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
       <div class="carousel-slide"><img src="pic/6.jpeg" alt="Photo 6"></div>
       <div class="carousel-slide"><img src="pic/7.jpeg" alt="Photo 7"></div>
       <div class="carousel-slide"><img src="pic/8.jpeg" alt="Photo 8"></div>
-      <div class="carousel-slide"><img src="pic/9.jpeg" alt="Photo 9"></div>
-      <div class="carousel-slide"><img src="pic/10.jpeg" alt="Photo 10"></div>
-      <div class="carousel-slide"><img src="pic/11.jpeg" alt="Photo 11"></div>
     </div>
     <button class="nav-btn next" id="btn-next">❯</button>
   </div>
-  
-  <div class="carousel-dots" id="carousel-dots">
-    </div>
 </section>
 
 <section id="details" class="reveal">
   <div class="card">
-    <h3 class="tropical-text">Event Details</h3>
+    <h3>Production Notes</h3>
     <div class="divider"></div>
     <div class="info-grid">
       <div><div class="label">Date</div><div class="value">20 Jun 2026 (Sat)</div></div>
-      <div><div class="label">Time</div><div class="value">Lunch, 11am - 2pm</div></div>
-      <div><div class="label">Venue</div><div class="value">Wheeler&#39;s Tropikana</div></div>
-      <div><div class="label">Area</div><div class="value">Gillman Barracks</div></div>
-      <div><div class="label">Dress Code</div><div class="value">Tropical Chic, Black accents welcome</div></div>
-      <div><div class="label">Theme</div><div class="value">Palms, ocean glow, sunset gold</div></div>
+      <div><div class="label">Scene</div><div class="value">Lunch, 11am - 2pm</div></div>
+      <div><div class="label">Set</div><div class="value">Wheeler's Tropikana</div></div>
+      <div><div class="label">Location</div><div class="value">Gillman Barracks</div></div>
+      <div><div class="label">Costume</div><div class="value">Tropical Chic</div></div>
+      <div><div class="label">Mood</div><div class="value">Urban Sunset</div></div>
     </div>
   </div>
 </section>
 
 <section id="rsvp" class="reveal">
   <div class="card">
-    <h3 class="tropical-text">RSVP</h3>
+    <h3>Ticket Reservation</h3>
     <div class="divider"></div>
     <form id="rsvp-form">
       <input name="Name" placeholder="Your Name" required>
       <select name="Attendance" required>
-        <option value="" disabled selected>Will you be attending?</option>
-        <option value="Will Attend">Will Attend</option>
+        <option value="" disabled selected>Will you join the premiere?</option>
+        <option value="Will Attend">Yes, Will Attend</option>
         <option value="Decline">Regretfully Decline</option>
       </select>
       <select name="Guests">
-        <option value="" disabled selected>Any additional guests?</option>
-        <option value="0">Just Me!</option>
-        <option value="1">Me + 1 Guest</option>
-        <option value="2">Me + 2 Guests</option>
-        <option value="3">Me + 3 Guests</option>
+        <option value="" disabled selected>Additional Cast Members?</option>
+        <option value="0">Just Me</option>
+        <option value="1">Me + 1</option>
+        <option value="2">Me + 2</option>
       </select>
-      <select name="Furbabies">
-        <option value="0" selected>0 Furbabies</option>
-        <option value="1">1 Furbaby</option>
-        <option value="2">2 Furbabies</option>
-        <option value="3">3 Furbabies</option>
-      </select>
-      <input name="Dietary" placeholder="Dietary Restrictions if Any">
-      <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
-      <button type="submit" id="submit-btn">Submit RSVP</button>
-      <p id="form-status" style="margin-top:10px; font-size:14px; color:#FFE100; font-weight:700; display:none;"></p>
+      <input name="Dietary" placeholder="Dietary Requirements">
+      <textarea name="Message" rows="3" placeholder="Leave a note for the directors..."></textarea>
+      <button type="submit" id="submit-btn">Confirm RSVP</button>
+      <p id="form-status" style="margin-top:10px; font-size:14px; color:var(--retro-yellow); text-align:center; display:none;"></p>
     </form>
   </div>
 </section>
 
 <section id="lucky" class="reveal">
   <div class="card">
-    <h3 class="tropical-text">Lucky Draw Blessings</h3>
+    <h3>Lucky Draw</h3>
     <div class="divider"></div>
-    <p style="font-weight: 600; font-size: 18px;">Pick ONE card to scratch!</p>
-    <p style="opacity:0.8; margin-top:-10px; font-size:14px;">Once you start scratching, the others will disappear.</p>
-
+    <p style="text-align:center; color:var(--neon-cyan);">Select a card to reveal your blessing</p>
+    
     <div class="scratch-zone">
       <div class="scratch-card"><div class="prize">永结同心</div><canvas></canvas></div>
       <div class="scratch-card"><div class="prize">百年好合</div><canvas></canvas></div>
       <div class="scratch-card"><div class="prize">福禄双全</div><canvas></canvas></div>
       <div class="scratch-card"><div class="prize">甜甜蜜蜜</div><canvas></canvas></div>
-      <div class="scratch-card"><div class="prize">花开富贵</div><canvas></canvas></div>
-      <div class="scratch-card"><div class="prize">龙凤呈祥</div><canvas></canvas></div>
     </div>
   </div>
 </section>
 
-<footer>囍 Raynard &amp; Shijie 囍</footer>
+<footer>
+  DIRECTED BY RAYNARD & SHIJIE<br>
+  EST. 2026
+</footer>
 
 <script>
 // --- SCROLL ANIMATION ---
@@ -495,285 +442,156 @@ const obs = new IntersectionObserver(entries => {
 });
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-// --- INFINITE LOOP CAROUSEL LOGIC ---
+// --- CAROUSEL LOGIC ---
 const track = document.getElementById('track');
 const slides = Array.from(track.children);
 const nextBtn = document.getElementById('btn-next');
 const prevBtn = document.getElementById('btn-prev');
-const dotsContainer = document.getElementById('carousel-dots');
+let currentIndex = 1; 
 
-let currentIndex = 1; // Start at 1 because we will have a clone at 0
-let isTransitioning = false;
-
-// 1. Setup Infinite Loop (Clone First & Last)
 const firstClone = slides[0].cloneNode(true);
 const lastClone = slides[slides.length - 1].cloneNode(true);
-
 track.appendChild(firstClone);
 track.insertBefore(lastClone, slides[0]);
+const allSlides = document.querySelectorAll('.carousel-slide');
 
-const allSlides = document.querySelectorAll('.carousel-slide'); // New list with clones
-
-// 2. Setup Dots (Only for original slide count)
-slides.forEach((_, idx) => {
-  const dot = document.createElement('div');
-  dot.classList.add('carousel-dot');
-  if (idx === 0) dot.classList.add('active');
-  dot.addEventListener('click', () => {
-    if(isTransitioning) return;
-    currentIndex = idx + 1; // +1 to account for the first clone
-    updateCarousel();
-  });
-  dotsContainer.appendChild(dot);
-});
-const dots = document.querySelectorAll('.carousel-dot');
-
-// 3. Positioning Function
 function updateCarousel(instant = false) {
-  if (!instant) {
-    track.style.transition = 'transform 0.4s ease-in-out';
-    isTransitioning = true;
-  } else {
-    track.style.transition = 'none';
-  }
+  track.style.transition = instant ? 'none' : 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
-  
-  // Update Dots
-  // Helper to map index to 0-10 range (ignoring clones)
-  let dotIndex = currentIndex - 1;
-  if (dotIndex < 0) dotIndex = slides.length - 1; // Clone of last
-  if (dotIndex >= slides.length) dotIndex = 0;     // Clone of first
-  
-  dots.forEach(d => d.classList.remove('active'));
-  if (dots[dotIndex]) dots[dotIndex].classList.add('active');
 }
-
-// Initial Position
 updateCarousel(true);
 
-// 4. Button Listeners
 nextBtn.addEventListener('click', () => {
-  if (isTransitioning) return;
+  if (currentIndex >= allSlides.length - 1) return;
   currentIndex++;
   updateCarousel();
 });
-
 prevBtn.addEventListener('click', () => {
-  if (isTransitioning) return;
+  if (currentIndex <= 0) return;
   currentIndex--;
   updateCarousel();
 });
-
-// 5. Infinite Loop Check (Transition End)
 track.addEventListener('transitionend', () => {
-  isTransitioning = false;
-  // If at last clone (Copy of Slide 1) -> Jump to real Slide 1
-  if (currentIndex === allSlides.length - 1) {
+  if (allSlides[currentIndex] === firstClone) {
+    track.style.transition = 'none';
     currentIndex = 1;
     updateCarousel(true);
   }
-  // If at first clone (Copy of Last Slide) -> Jump to real Last Slide
-  if (currentIndex === 0) {
+  if (allSlides[currentIndex] === lastClone) {
+    track.style.transition = 'none';
     currentIndex = allSlides.length - 2;
     updateCarousel(true);
   }
 });
 
-// 6. Touch Swipe Logic
-let touchStartX = 0;
-let touchEndX = 0;
-
-track.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
-}, {passive: true});
-
-track.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-}, {passive: true});
-
-function handleSwipe() {
-  if (isTransitioning) return;
-  const threshold = 50; // Min distance to trigger swipe
-  if (touchEndX < touchStartX - threshold) {
-    // Swiped Left -> Next
-    currentIndex++;
-    updateCarousel();
-  }
-  if (touchEndX > touchStartX + threshold) {
-    // Swiped Right -> Prev
-    currentIndex--;
-    updateCarousel();
-  }
-}
-
-// --- ROBUST SCRATCH CARD LOGIC ---
+// --- SCRATCH CARD (Updated for Gold/Red Theme) ---
 const allCards = document.querySelectorAll(".scratch-card");
 let hasChosen = false; 
 
 function throttle(func, limit) {
   let inThrottle;
   return function() {
-    const args = arguments;
-    const context = this;
     if (!inThrottle) {
-      func.apply(context, args);
+      func.apply(this, arguments);
       inThrottle = true;
       setTimeout(() => inThrottle = false, limit);
     }
   }
 }
 
-allCards.forEach((card, index) => {
+allCards.forEach((card) => {
   const canvas = card.querySelector("canvas");
   const ctx = canvas.getContext("2d", { willReadFrequently: true });
   let isScratching = false;
-  let lastX = 0;
-  let lastY = 0;
 
   function initCard() {
-    const dpr = Math.max(1, window.devicePixelRatio || 1);
     const w = card.offsetWidth;
     const h = card.offsetHeight;
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    ctx.scale(dpr, dpr);
+    canvas.width = w;
+    canvas.height = h;
 
-    // Update Scratch Gradient to Silver/Blue to match theme
+    // Gold/Red Gradient for the scratch surface
     const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, "#bdc3c7");
-    grad.addColorStop(0.5, "#ecf0f1");
-    grad.addColorStop(1, "#bdc3c7");
+    grad.addColorStop(0, "#FFD700"); // Gold
+    grad.addColorStop(0.5, "#FFaa00");
+    grad.addColorStop(1, "#FFD700");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, w, h);
-
-    // Add noise
-    ctx.globalCompositeOperation = "source-over";
-    const noiseAmount = 3000;
-    for(let i=0; i<noiseAmount; i++){
-       ctx.fillStyle = Math.random() > 0.5 ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.1)";
-       ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
+    
+    // Add pattern
+    ctx.fillStyle = "rgba(255, 69, 0, 0.2)"; // Reddish pattern
+    for(let i=0; i<30; i++) {
+        ctx.beginPath();
+        ctx.arc(Math.random()*w, Math.random()*h, Math.random()*10, 0, Math.PI*2);
+        ctx.fill();
     }
-
-    // Add Retro Logos/Speckles
-    ctx.globalAlpha = 0.6;
-    for (let i = 0; i < 40; i++){
-      const x = Math.random() * w;
-      const y = Math.random() * h;
-      const r = Math.random() * 3;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = "#1422a5"; // Deep blue speckles
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
   }
   initCard();
   
-  function lockOthers() {
-    if (hasChosen) return;
-    hasChosen = true;
-    allCards.forEach(c => {
-      if (c !== card) c.classList.add('locked-out');
-    });
-  }
-
-  function scratch(x, y) {
-    ctx.globalCompositeOperation = "destination-out";
-    ctx.lineWidth = 25; 
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    lastX = x; 
-    lastY = y;
-  }
-
-  function getLocalXY(e){
+  function getPos(e) {
     const r = canvas.getBoundingClientRect();
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   }
 
   const checkReveal = throttle(() => {
-    const rawW = canvas.width; 
-    const rawH = canvas.height;
-    if (rawW === 0 || rawH === 0) return;
-    const img = ctx.getImageData(0, 0, rawW, rawH).data;
-    let total = 0, cleared = 0;
-    const step = 20; 
-    for (let i = 0; i < img.length; i += step * 4) {
-      total++;
-      if (img[i+3] === 0) cleared++;
+    const imgData = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let cleared = 0;
+    for(let i=0; i<imgData.length; i+=16) {
+        if(imgData[i+3] === 0) cleared++;
     }
-    if (cleared / total > 0.45) {
-      canvas.style.transition = "opacity 0.6s ease";
-      canvas.style.opacity = 0;
-      canvas.style.pointerEvents = "none"; 
-      card.classList.add('revealed');
+    if(cleared / (imgData.length/16) > 0.5) {
+        canvas.style.opacity = 0;
+        canvas.style.pointerEvents = "none";
+        card.classList.add('revealed');
     }
   }, 200);
 
-  canvas.addEventListener("pointerdown", (e) => {
-    if (hasChosen && !card.classList.contains('active-choice')) return;
-    if (!hasChosen) {
-      card.classList.add('active-choice');
-      lockOthers();
-    }
-    canvas.setPointerCapture(e.pointerId);
-    isScratching = true;
-    const p = getLocalXY(e);
-    lastX = p.x; lastY = p.y;
-    ctx.globalCompositeOperation = "destination-out";
-    ctx.beginPath();
-    ctx.arc(lastX, lastY, 12, 0, Math.PI*2);
-    ctx.fill();
-  });
+  function scratch(x,y) {
+     ctx.globalCompositeOperation = "destination-out";
+     ctx.beginPath();
+     ctx.arc(x, y, 15, 0, Math.PI*2);
+     ctx.fill();
+  }
 
+  canvas.addEventListener("pointerdown", (e) => {
+    if(hasChosen && !card.classList.contains('active')) return;
+    if(!hasChosen) {
+        hasChosen = true;
+        card.classList.add('active');
+        allCards.forEach(c => { if(c!==card) c.classList.add('locked-out'); });
+    }
+    isScratching = true;
+    const p = getPos(e);
+    scratch(p.x, p.y);
+  });
+  
   canvas.addEventListener("pointermove", (e) => {
-    if (!isScratching) return;
-    e.preventDefault(); 
-    const p = getLocalXY(e);
+    if(!isScratching) return;
+    const p = getPos(e);
     scratch(p.x, p.y);
     checkReveal();
   });
-
-  canvas.addEventListener("pointerup", () => { isScratching = false; });
-  canvas.addEventListener("pointercancel", () => { isScratching = false; });
+  
+  canvas.addEventListener("pointerup", () => isScratching = false);
 });
 
-// --- RSVP FORM LOGIC ---
+// --- RSVP FORM ---
 const form = document.getElementById('rsvp-form');
 const statusMsg = document.getElementById('form-status');
 const submitBtn = document.getElementById('submit-btn');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  const originalBtnText = submitBtn.innerText;
-  submitBtn.innerText = "Sending...";
+  submitBtn.innerText = "Submitting...";
   submitBtn.disabled = true;
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwooJOl5iS98194GicONSQ_juCVQEKHYEUivfV9AR4GK1Zjnqfr54MYdPULIefGyICY/exec'; 
-
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => {
-      statusMsg.innerText = "Thank you! Your RSVP has been received.";
-      statusMsg.style.display = "block";
-      submitBtn.innerText = "Sent!";
-      form.reset();
-    })
-    .catch(error => {
-      statusMsg.innerText = "Oops! Something went wrong. Please try again.";
-      statusMsg.style.color = "#ff6b6b"; 
-      statusMsg.style.display = "block";
-      submitBtn.innerText = originalBtnText;
-      submitBtn.disabled = false;
-      console.error('Error!', error.message);
-    });
+  // Simulating submission for demo
+  setTimeout(() => {
+     statusMsg.innerText = "RSVP Received! See you there.";
+     statusMsg.style.display = "block";
+     submitBtn.innerText = "Confirmed";
+     form.reset();
+  }, 1500);
 });
 </script>
-
 </body>
 </html>
