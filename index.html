@@ -12,13 +12,13 @@
   /* --- NEW THEME: Retro HK Pop --- */
   --bg-deep-blue: #1422a5; /* Royal Blue from Image 2 */
   --bg-darker: #0b125e;
-  
+   
   --glass-panel: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
-  
+   
   --text-main: #ffffff;
   --text-muted: #d0d6ff;
-  
+   
   /* Pop Accents */
   --pop-yellow: #FFE100; /* The yellow from the text stickers */
   --neon-cyan: #00f3ff;
@@ -278,6 +278,27 @@ section{
 .label{ font-size:12px; letter-spacing:1px; color: var(--neon-cyan); text-transform: uppercase; font-weight: 700; }
 .value{ font-size:18px; margin-top: 6px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
+/* --- MAP STYLING (NEW) --- */
+.map-container {
+  margin-top: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--neon-cyan);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  height: 350px;
+  position: relative;
+  background: #000;
+}
+
+.map-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  /* DARK MODE HACK: Invert colors but keep contrast high */
+  filter: grayscale(100%) invert(90%) contrast(120%);
+}
+
 /* Form */
 form{ display:grid; gap:18px; }
 input, select, textarea{
@@ -382,7 +403,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
   <h1>THE UNION OF 2026, Yu Are My 世界!</h1>
   <h2 class="tropical-text">Raynard & Shijie</h2>
   <h3>20 Jun 2026 (Sat) · 11am - 2pm</h3>
-  <div class="subline"><span>Wheeler&#39;s Tropikana</span><span>•</span><span>Gillman Barracks area</span></div>
+  <div class="subline"><span>Wheeler's Tropikana</span><span>•</span><span>Gillman Barracks area - 9A Lock Rd </span></div>
 </section>
 
 <section id="story" class="reveal">
@@ -396,7 +417,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
 
 <section id="gallery" class="reveal">
   <h3 class="tropical-text" style="text-align:center; font-family:Playfair Display, serif; font-size:32px; margin-bottom:20px;">Sweet Memories</h3>
-  
+   
   <div class="carousel-container">
     <button class="nav-btn prev" id="btn-prev">❮</button>
     <div class="carousel-track" id="track">
@@ -414,7 +435,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
     </div>
     <button class="nav-btn next" id="btn-next">❯</button>
   </div>
-  
+   
   <div class="carousel-dots" id="carousel-dots">
     </div>
 </section>
@@ -423,14 +444,26 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
   <div class="card">
     <h3 class="tropical-text">Event Details</h3>
     <div class="divider"></div>
+    
     <div class="info-grid">
       <div><div class="label">Date</div><div class="value">20 Jun 2026 (Sat)</div></div>
       <div><div class="label">Time</div><div class="value">Lunch, 11am - 2pm</div></div>
-      <div><div class="label">Venue</div><div class="value">Wheeler&#39;s Tropikana</div></div>
+      <div><div class="label">Venue</div><div class="value">Wheeler's Tropikana</div></div>
       <div><div class="label">Area</div><div class="value">Gillman Barracks - Free Parking</div></div>
       <div><div class="label">Dress Code</div><div class="value">Tropical Chic, Black accents welcome</div></div>
       <div><div class="label">Theme</div><div class="value">Palms, ocean glow, sunset gold</div></div>
     </div>
+
+    <div class="map-container">
+        <iframe 
+            class="map-frame" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.825238109456!2d103.80133931254704!3d1.2783879987040987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1b59a18ba33b%3A0x2a9e02c19cc3ff45!2sWheeler's%20Tropikana!5e0!3m2!1sen!2ssg!4v1769405102910!5m2!1sen!2ssg" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
   </div>
 </section>
 
@@ -484,7 +517,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
   </div>
 </section>
 
-<footer>囍 Raynard &amp; Shijie 囍</footer>
+<footer>囍 Raynard & Shijie 囍</footer>
 
 <script>
 // --- SCROLL ANIMATION ---
@@ -537,13 +570,13 @@ function updateCarousel(instant = false) {
     track.style.transition = 'none';
   }
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
-  
+   
   // Update Dots
   // Helper to map index to 0-10 range (ignoring clones)
   let dotIndex = currentIndex - 1;
   if (dotIndex < 0) dotIndex = slides.length - 1; // Clone of last
   if (dotIndex >= slides.length) dotIndex = 0;     // Clone of first
-  
+   
   dots.forEach(d => d.classList.remove('active'));
   if (dots[dotIndex]) dots[dotIndex].classList.add('active');
 }
@@ -671,7 +704,7 @@ allCards.forEach((card, index) => {
     ctx.globalAlpha = 1;
   }
   initCard();
-  
+   
   function lockOthers() {
     if (hasChosen) return;
     hasChosen = true;
