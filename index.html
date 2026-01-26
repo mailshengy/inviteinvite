@@ -320,6 +320,39 @@ section{
   background: #000;
 }
 
+/* Navigation Button Style */
+.nav-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-family: "Press Start 2P", cursive;
+  font-size: 11px;
+  color: var(--neon-cyan);
+  border: 2px solid var(--neon-cyan);
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-action-btn:hover {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 25px var(--neon-cyan), inset 0 0 10px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+}
+
+.nav-icon {
+  font-size: 16px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0.5; } }
+
 /* This creates the Cyan/Magenta Tint */
 .map-container::after {
   content: "";
@@ -513,11 +546,17 @@ footer{ text-align:center; padding: 60px 20px; font-size: 14px; color: var(--tex
    <div class="map-container">
     <iframe 
         class="map-frame" 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.826508821953!2d103.80369362354966!3d1.277647098710255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1bc9c4c4c4c5%3A0x8673070404097486!2sWheeler&#39;s%20Tropikana!5e0!3m2!1sen!2ssg!4v1700000000000!5m2!1sen!2ssg" 
+        src="https://maps.google.com/maps?q=Wheeler's%20Tropikana%20Singapore&t=&z=15&ie=UTF8&iwloc=&output=embed" 
         allowfullscreen="" 
         loading="lazy" 
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
+</div>
+
+<div style="text-align:center;">
+    <a href="https://maps.app.goo.gl/yfhBdeiZXFbaqJw47" target="_blank" class="nav-action-btn">
+        <span class="nav-icon">📍</span> Open in Maps
+    </a>
 </div>
   </div>
 </section>
