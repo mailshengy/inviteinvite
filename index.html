@@ -5,26 +5,25 @@
 <title>The Union of 2026, Yu Are My 世界！| Raynard & Shijie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cinzel:wght@700&family=Space+Grotesk:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* --- NEW THEME: Retro HK Pop --- */
-  --bg-deep-blue: #1422a5; /* Royal Blue from Image 2 */
-  --bg-darker: #0b125e;
-   
-  --glass-panel: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-   
-  --text-main: #ffffff;
-  --text-muted: #d0d6ff;
-   
-  /* Pop Accents */
-  --pop-yellow: #FFE100; /* The yellow from the text stickers */
-  --neon-cyan: #00f3ff;
-  --neon-pink: #ff00de;
+  /* --- NEW THEME: Retro Synthwave Terminal --- */
+  --bg-darkest: #050a1f;
+  --bg-terminal: rgba(0, 0, 0, 0.75);
+  
+  /* Retro Neons */
+  --neon-magenta: #ff00ff;
+  --neon-cyan: #00ffff;
+  --neon-yellow: #ffe600;
+  --neon-purple: #bc13fe;
 
-  --shadow: rgba(0, 0, 0, 0.25);
+  --text-main: #ffffff;
+  --text-glow: #b0e0ff;
+  
+  --terminal-border: 2px solid var(--neon-cyan);
+  --shadow-glow: 0 0 15px rgba(0, 255, 255, 0.4);
 }
 
 *{ box-sizing:border-box; }
@@ -34,56 +33,60 @@ body{
   font-family:"Space Grotesk", sans-serif;
   color: var(--text-main);
   overflow-x:hidden;
-  /* CSS Grid Pattern based on Image 2 */
-  background-color: var(--bg-deep-blue);
+  background-color: var(--bg-darkest);
+  /* Perspective Grid Background */
   background-image: 
-    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), 
-    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
-  background-size: 40px 40px; /* Grid size */
+    linear-gradient(transparent 0%, rgba(188, 19, 254, 0.2) 2%, transparent 3%),
+    linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.2) 2%, transparent 3%);
+  background-size: 50px 50px;
   min-height: 100vh;
-  overscroll-behavior-y: none; 
+  overscroll-behavior-y: none;
+  position: relative;
 }
 
-/* Background Palms - Converted to Neon Wireframes */
-.palm{
+/* CRT Scanline Overlay */
+body::before {
+  content: "";
   position: fixed;
-  bottom: -40px;
-  width: 380px;
-  height: 380px;
-  opacity: 0.6; 
-  z-index: 0;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.2) 3px,
+    rgba(0, 0, 0, 0.2) 4px
+  );
   pointer-events: none;
-  mix-blend-mode: screen;
+  z-index: 99; /* Overlay everything */
+  opacity: 0.6;
 }
-.palm.left{ left:-80px; transform: rotate(-8deg) scale(1.05); }
-.palm.right{ right:-80px; transform: rotate(10deg) scale(1.05); }
 
-/* Motes - Changed to "City Lights" glow */
+/* Motes - Changed to "Digital Sparks" */
 .motes{
   position: fixed;
   inset:0;
   pointer-events:none;
   z-index:1;
   background:
-    radial-gradient(circle at 10% 30%, rgba(255, 225, 0, 0.2), transparent 5%),
-    radial-gradient(circle at 70% 20%, rgba(0, 243, 255, 0.2), transparent 6%),
-    radial-gradient(circle at 40% 80%, rgba(255, 0, 222, 0.15), transparent 4%);
-  animation: float 15s ease-in-out infinite alternate;
+    radial-gradient(circle at 20% 30%, rgba(255, 0, 255, 0.3), transparent 4px),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.3), transparent 4px),
+    radial-gradient(circle at 50% 70%, rgba(255, 230, 0, 0.3), transparent 4px);
+  background-size: 100px 100px;
+  animation: float 10s linear infinite;
 }
 @keyframes float{
-  from{ transform: translateY(0px); }
-  to{ transform: translateY(-20px); }
+  from{ background-position: 0 0; }
+  to{ background-position: 100px 100px; }
 }
 
 /* Header */
 header{
   position: sticky;
   top: 0;
-  background: rgba(11, 18, 94, 0.85); /* Dark Blue Glass */
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background: rgba(5, 10, 31, 0.9);
+  border-bottom: 2px solid var(--neon-purple);
   z-index: 10;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
 }
 
 .header-inner{
@@ -96,16 +99,25 @@ header{
 }
 
 nav a{
-  color: var(--text-muted);
+  color: var(--text-glow);
   text-decoration:none;
   margin: 0 15px;
-  font-size:14px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size:13px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  position: relative;
 }
-nav a:hover{ color: var(--pop-yellow); text-shadow: 0 0 8px rgba(255, 225, 0, 0.6); }
+nav a:hover{ 
+  color: var(--neon-cyan); 
+  text-shadow: 0 0 8px var(--neon-cyan);
+}
+nav a:hover::after {
+  content: ''; position: absolute; bottom: -5px; left:0; width:100%; height:2px;
+  background: var(--neon-magenta); box-shadow: 0 0 5px var(--neon-magenta);
+}
 
 section{
   max-width:900px;
@@ -126,15 +138,16 @@ section{
   transform: translateY(0);
 }
 
-/* Typography Updates */
-.gold-text{ color: var(--pop-yellow); font-weight: 700; letter-spacing: 1px; }
+/* Typography Updates - Retro Glitch Effects */
+.gold-text{ color: var(--neon-yellow); font-weight: 700; letter-spacing: 1px; text-shadow: 0 0 5px rgba(255, 230, 0, 0.5); }
 
 .tropical-text{
-  /* Changed to Pop Gradient */
-  background: linear-gradient(120deg, #fff, var(--pop-yellow));
+  /* Changed to Neon Gradient */
+  background: linear-gradient(90deg, var(--neon-magenta), var(--neon-cyan));
   -webkit-background-clip:text;
   color: transparent;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  font-weight: 700;
+  filter: drop-shadow(0 0 5px rgba(255,0,255,0.5));
 }
 
 /* Hero */
@@ -142,48 +155,63 @@ section{
 
 .hero-badge{
   display:inline-flex; align-items:center; gap:8px;
-  padding:8px 16px; border-radius:999px;
-  background: var(--pop-yellow); /* Yellow Badge */
-  border: 2px solid #fff;
-  margin-bottom: 24px; box-shadow: 0 4px 15px rgba(255, 225, 0, 0.3);
-  font-size: 12px; letter-spacing: 1.5px;
-  font-weight: 700;
-  text-transform: uppercase; color: var(--bg-deep-blue);
+  padding:6px 12px; 
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
+  margin-bottom: 24px;
+  font-family: "Press Start 2P", cursive; /* 8-bit font */
+  font-size: 10px; 
+  text-transform: uppercase; color: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
 }
-.dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--bg-deep-blue); }
+.dot{ width: 8px; height: 8px; background: var(--neon-magenta); box-shadow: 0 0 5px var(--neon-magenta); }
 
 .hero h1{
-  font-family: Cinzel, serif; font-size:18px;
-  letter-spacing:4px; color: var(--neon-cyan); margin: 0;
-  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  font-family: Cinzel, serif; font-size:20px;
+  letter-spacing:4px; color: #fff; margin: 0;
+  /* Chromatic Aberration Effect */
+  text-shadow: -2px 0 var(--neon-magenta), 2px 0 var(--neon-cyan);
 }
 .hero h2{
-  font-family: Playfair Display, serif; font-size:60px;
-  color: #fff; margin: 14px 0; line-height: 1.1;
-  text-shadow: 4px 4px 0px var(--bg-darker); /* Retro Block Shadow */
+  font-family: Playfair Display, serif; font-size:64px;
+  color: #fff; margin: 20px 0; line-height: 1;
+  /* Retro Header Style */
+  -webkit-text-stroke: 1px var(--neon-purple);
+  text-shadow: 
+    3px 3px 0px var(--neon-magenta),
+    -3px -3px 0px var(--neon-cyan);
 }
-.hero h3{ font-weight:500; letter-spacing:1px; margin: 0; color: var(--text-muted); }
-.hero .subline{ margin-top: 16px; font-size: 15px; color: var(--pop-yellow); font-weight: 600; }
+.hero h3{ 
+  font-family: "Space Grotesk", monospace; font-weight:600; letter-spacing:2px; margin: 0; color: var(--text-glow); text-transform: uppercase;
+}
+.hero .subline{ margin-top: 24px; font-size: 14px; color: var(--neon-yellow); font-family: "Press Start 2P", cursive; }
 .hero .subline span{ padding: 0 8px; }
 
-/* New Card Style: Glassmorphism */
+/* New Card Style: Retro Terminal Panel */
 .card{
-  background: var(--glass-panel);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  background: var(--bg-terminal);
+  /* Glowing split border */
+  border: 3px solid transparent;
+  border-image: linear-gradient(to bottom right, var(--neon-cyan), var(--neon-magenta)) 1;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15), inset 0 0 20px rgba(0,0,0,0.5);
   padding: 50px; margin-bottom: 40px; position: relative;
-  box-shadow: 0 20px 40px var(--shadow);
 }
+/* Scanline texture inside cards */
+.card::after {
+  content: " ";
+  display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none; opacity: 0.3;
+}
+
 .card h3{
   font-family: Playfair Display, serif; font-size: 32px;
-  margin-top: 0; color: var(--pop-yellow);
+  margin-top: 0; 
 }
 .divider{
-  height: 4px; width: 60px; background: var(--neon-cyan);
-  margin: 18px 0 26px; border-radius: 2px;
-  box-shadow: 0 0 10px var(--neon-cyan);
+  height: 4px; width: 80px; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+  margin: 18px 0 26px;
+  box-shadow: 0 0 15px var(--neon-cyan);
 }
 
 /* --- CAROUSEL STYLES --- */
@@ -200,11 +228,11 @@ section{
   max-width: 400px;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  /* Retro border */
+  border: 4px solid var(--neon-magenta);
+  box-shadow: 0 0 20px var(--neon-magenta), 10px 10px 0px var(--neon-cyan);
   background: #000;
-  border: 4px solid #fff;
-  transform: rotate(-2deg); /* Slight playful tilt like a polaroid */
+  transform: skewX(-2deg); /* Slight shear for speed look */
 }
 
 .carousel-track {
@@ -223,29 +251,30 @@ section{
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: contrast(1.2) saturate(1.1); /* Pop the colors */
 }
 
 /* Dots */
 .carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   margin-top: 30px;
 }
 .carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
   cursor: pointer;
   transition: all 0.3s;
-  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 0 5px var(--neon-cyan);
 }
 .carousel-dot.active {
-  background: var(--pop-yellow);
-  border-color: var(--pop-yellow);
-  transform: scale(1.3);
-  box-shadow: 0 0 10px var(--pop-yellow);
+  background: var(--neon-yellow);
+  border-color: var(--neon-yellow);
+  box-shadow: 0 0 15px var(--neon-yellow);
+  transform: scale(1.2);
 }
 
 /* Carousel Navigation Buttons */
@@ -253,38 +282,38 @@ section{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
-  border: 2px solid var(--bg-deep-blue);
-  width: 40px; height: 40px;
-  border-radius: 50%;
+  background: rgba(0,0,0,0.7);
+  border: 2px solid var(--neon-cyan);
+  width: 44px; height: 44px;
   cursor: pointer;
   z-index: 5;
-  color: var(--bg-deep-blue);
-  font-size: 18px;
+  color: var(--neon-cyan);
+  font-size: 20px;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px var(--neon-cyan);
   transition: all 0.2s;
+  border-radius: 0; /* Square buttons */
 }
-.nav-btn:hover { background: var(--pop-yellow); transform: translateY(-50%) scale(1.1); border-color: #fff; }
-.nav-btn.prev { left: 15px; }
-.nav-btn.next { right: 15px; }
+.nav-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 20px var(--neon-cyan); }
+.nav-btn.prev { left: 10px; }
+.nav-btn.next { right: 10px; }
 
 @media(max-width: 680px) {
-  .carousel-container { max-width: 85%; transform: rotate(0deg); }
+  .carousel-container { max-width: 85%; transform: skewX(0deg); }
 }
 
 /* Info Grid */
 .info-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:30px; }
-.label{ font-size:12px; letter-spacing:1px; color: var(--neon-cyan); text-transform: uppercase; font-weight: 700; }
-.value{ font-size:18px; margin-top: 6px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.label{ font-family: "Press Start 2P", cursive; font-size:10px; letter-spacing:1px; color: var(--neon-yellow); text-transform: uppercase; margin-bottom:8px;}
+.value{ font-size:18px; color: #fff; text-shadow: 0 0 5px var(--neon-cyan); }
 
 /* --- MAP STYLING (NEW) --- */
 .map-container {
   margin-top: 30px;
-  border-radius: 12px;
+  border-radius: 0; /* Square corners for retro look */
   overflow: hidden;
-  border: 2px solid var(--neon-cyan);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border: 3px solid var(--neon-magenta);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
   height: 350px;
   position: relative;
   background: #000;
@@ -295,29 +324,40 @@ section{
   height: 100%;
   border: 0;
   display: block;
-  /* DARK MODE HACK: Invert colors but keep contrast high */
-  filter: grayscale(100%) invert(90%) contrast(120%);
+  /* Retro Heatmap Style */
+  filter: grayscale(100%) contrast(150%) brightness(80%) sepia(100%) hue-rotate(280deg) saturate(300%);
 }
 
-/* Form */
+/* Form - Retro Terminal Input Style */
 form{ display:grid; gap:18px; }
 input, select, textarea{
-  background: rgba(255, 255, 255, 0.9); border: 2px solid transparent; padding: 14px;
-  color: var(--bg-darker); border-radius: 8px; font-family:"Space Grotesk", sans-serif;
-  outline: none; font-size: 15px; transition: all 0.3s;
-  font-weight: 500;
+  background: rgba(0, 0, 0, 0.5); 
+  border: 2px solid var(--neon-purple);
+  padding: 14px;
+  color: var(--neon-cyan); 
+  font-family:"Space Grotesk", monospace;
+  outline: none; font-size: 16px; transition: all 0.3s;
+  font-weight: 600; letter-spacing: 1px;
+  border-radius: 0; /* Square inputs */
 }
 input:focus, select:focus, textarea:focus{
-  border-color: var(--pop-yellow); box-shadow: 0 0 15px rgba(255, 225, 0, 0.4);
+  border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  background: rgba(0, 255, 255, 0.05);
 }
-::placeholder { color: #555; }
+::placeholder { color: rgba(0, 255, 255, 0.5); }
 button{
-  background: var(--pop-yellow);
-  border: 2px solid #fff; padding: 16px; color: var(--bg-deep-blue); font-weight: 700;
-  letter-spacing: 1px; border-radius: 8px; cursor: pointer; text-transform: uppercase;
-  box-shadow: 0 8px 20px rgba(0,0,0, 0.3); transition: transform 0.2s;
+  background: transparent;
+  border: 3px solid var(--neon-magenta); padding: 16px; color: var(--neon-magenta); font-weight: 700;
+  letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
+  font-family: "Press Start 2P", cursive; font-size: 12px;
+  box-shadow: 0 0 10px var(--neon-magenta), inset 0 0 10px var(--neon-magenta); 
+  transition: all 0.2s;
+  border-radius: 0;
 }
-button:hover{ transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 225, 0, 0.4); }
+button:hover{ 
+  background: var(--neon-magenta); color: #000;
+  box-shadow: 0 0 30px var(--neon-magenta);
+}
 
 /* --- REALISTIC SCRATCH CARD CSS --- */
 .scratch-zone{
@@ -332,11 +372,10 @@ button:hover{ transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 225
 .scratch-card{
   position: relative;
   height: 120px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff; /* White background for prize to pop */
+  /* Glowing borders */
   border: 2px solid var(--neon-cyan);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  background: #000; 
   transition: transform 0.3s, opacity 0.5s ease, filter 0.5s ease;
   touch-action: none; 
 }
@@ -344,22 +383,23 @@ button:hover{ transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 225
 /* Locked State */
 .scratch-card.locked-out {
   opacity: 0.3;
-  filter: grayscale(100%);
+  filter: grayscale(100%) brightness(0.5);
   pointer-events: none;
   transform: scale(0.95);
 }
 
 /* Winner/Revealed State */
 .scratch-card.revealed {
-  box-shadow: 0 0 20px var(--pop-yellow);
-  border-color: var(--pop-yellow);
+  box-shadow: 0 0 25px var(--neon-yellow);
+  border-color: var(--neon-yellow);
+  background: radial-gradient(circle, #333, #000);
 }
 
 .prize{
   position:absolute; inset:0;
   display:flex; align-items:center; justify-content:center;
   font-size:18px; font-weight:700; letter-spacing:2px;
-  color: var(--bg-darker); /* Dark text on white card */
+  color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow);
   z-index:1; text-align: center;
 }
 
@@ -370,12 +410,12 @@ canvas{
 }
 
 /* Footer */
-footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--text-muted); opacity: 0.7; }
+footer{ text-align:center; padding: 60px 20px; font-size: 14px; color: var(--text-glow); letter-spacing: 2px; }
 
 @media (max-width: 680px){
-  .hero h2{ font-size: 42px; }
+  .hero h2{ font-size: 36px; }
   .card{ padding: 30px 20px; }
-  nav a { margin: 0 8px; font-size: 13px; }
+  nav a { margin: 0 8px; font-size: 11px; }
 }
 </style>
 </head>
@@ -383,9 +423,6 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
 <body>
 
 <div class="motes"></div> 
-<svg class="palm left" viewBox="0 0 200 200"><g fill="none" stroke="#ff00de" stroke-width="1.5" stroke-linecap="round"><path d="M110 190 C108 150, 96 128, 92 108 C88 86, 98 70, 110 62" /><path d="M110 68 C98 50, 74 40, 52 44 C74 48, 92 58, 110 70" /><path d="M110 68 C122 50, 146 40, 168 44 C146 48, 128 58, 110 70" /><path d="M110 78 C90 70, 64 72, 44 86 C66 82, 90 84, 110 92" /><path d="M110 78 C130 70, 156 72, 176 86 C154 82, 130 84, 110 92" /><path d="M110 62 C108 40, 100 26, 88 16 C98 28, 106 44, 110 62" /></g></svg>
-<svg class="palm right" viewBox="0 0 200 200"><g fill="none" stroke="#00f3ff" stroke-width="1.5" stroke-linecap="round"><path d="M90 190 C92 150, 104 128, 108 108 C112 86, 102 70, 90 62" /><path d="M90 68 C102 50, 126 40, 148 44 C126 48, 108 58, 90 70" /><path d="M90 68 C78 50, 54 40, 32 44 C54 48, 72 58, 90 70" /><path d="M90 78 C110 70, 136 72, 156 86 C134 82, 110 84, 90 92" /><path d="M90 78 C70 70, 44 72, 24 86 C46 82, 70 84, 90 92" /><path d="M90 62 C92 40, 100 26, 112 16 C102 28, 94 44, 90 62" /></g></svg>
-
 <header>
   <div class="header-inner">
     <nav>
@@ -399,11 +436,11 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
 </header>
 
 <section class="hero reveal">
-  <div class="hero-badge"><span class="dot"></span>Tropical Lunch Celebration</div>
+  <div class="hero-badge"><span class="dot"></span> Level 2026 Unlocked</div>
   <h1>THE UNION OF 2026, Yu Are My 世界!</h1>
   <h2 class="tropical-text">Raynard & Shijie</h2>
   <h3>20 Jun 2026 (Sat) · 11am - 2pm</h3>
-  <div class="subline"><span>Wheeler's Tropikana</span><span>•</span><span>Gillman Barracks area - 9A Lock Rd </span></div>
+  <div class="subline"><span>Wheeler's Tropikana</span><span>//</span><span>Gillman Barracks, 9A Lock Rd</span></div>
 </section>
 
 <section id="story" class="reveal">
@@ -411,13 +448,13 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
     <h3 class="tropical-text">Our Beginning</h3>
     <div class="divider"></div>
     <p>We met in school as orientation group leaders. Two people guiding others, yet slowly finding each other. Friendship formed, trust followed, and a lifelong promise was made.</p>
-    <p class="gold-text">良缘天定 · 百年好合</p>
+    <p class="gold-text" style="margin-top:20px; font-size: 20px;">良缘天定 · 百年好合</p>
   </div>
 </section>
 
 <section id="gallery" class="reveal">
-  <h3 class="tropical-text" style="text-align:center; font-family:Playfair Display, serif; font-size:32px; margin-bottom:20px;">Sweet Memories</h3>
-   
+  <h3 class="tropical-text" style="text-align:center; font-family:Playfair Display, serif; font-size:32px; margin-bottom:20px; text-shadow: -2px 0 var(--neon-magenta), 2px 0 var(--neon-cyan);">Sweet Memories</h3>
+  
   <div class="carousel-container">
     <button class="nav-btn prev" id="btn-prev">❮</button>
     <div class="carousel-track" id="track">
@@ -435,7 +472,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
     </div>
     <button class="nav-btn next" id="btn-next">❯</button>
   </div>
-   
+  
   <div class="carousel-dots" id="carousel-dots">
     </div>
 </section>
@@ -444,7 +481,6 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
   <div class="card">
     <h3 class="tropical-text">Event Details</h3>
     <div class="divider"></div>
-    
     <div class="info-grid">
       <div><div class="label">Date</div><div class="value">20 Jun 2026 (Sat)</div></div>
       <div><div class="label">Time</div><div class="value">Lunch, 11am - 2pm</div></div>
@@ -457,43 +493,42 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
     <div class="map-container">
         <iframe 
             class="map-frame" 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.825238109456!2d103.80133931254704!3d1.2783879987040987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1b59a18ba33b%3A0x2a9e02c19cc3ff45!2sWheeler's%20Tropikana!5e0!3m2!1sen!2ssg!4v1769405102910!5m2!1sen!2ssg" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.806543483078!2d103.8037583153423!3d1.280527462131034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1bdc041663e5%3A0x2d55a2783d1c00f3!2sWheeler&#39;s%20Tropikana!5e0!3m2!1sen!2ssg!4v1678888888888!5m2!1sen!2ssg" 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </div>
-
   </div>
 </section>
 
 <section id="rsvp" class="reveal">
   <div class="card">
-    <h3 class="tropical-text">RSVP</h3>
+    <h3 class="tropical-text">RSVP MISSION</h3>
     <div class="divider"></div>
     <form id="rsvp-form">
-      <input name="Name" placeholder="Your Name" required>
+      <input name="Name" placeholder="ENTER YOUR NAME" required>
       <select name="Attendance" required>
-        <option value="" disabled selected>Will you be attending?</option>
-        <option value="Will Attend">Will Attend</option>
-        <option value="Decline">Regretfully Decline</option>
+        <option value="" disabled selected>WILL YOU ATTEND?</option>
+        <option value="Will Attend">ACCEPT MISSION</option>
+        <option value="Decline">DECLINE MISSION</option>
       </select>
       <select name="Guests">
-        <option value="" disabled selected>Any additional guests?</option>
-        <option value="0">Just Me!</option>
-        <option value="1">Me + 1 Guest</option>
-        <option value="2">Me + 2 Guests</option>
-        <option value="3">Me + 3 Guests</option>
+        <option value="" disabled selected>ADDITIONAL PLAYERS?</option>
+        <option value="0">SOLO PLAYER</option>
+        <option value="1">PLAYER + 1</option>
+        <option value="2">PLAYER + 2</option>
+        <option value="3">PLAYER + 3</option>
       </select>
       <select name="Furbabies">
-        <option value="0" selected>0 Furbabies</option>
-        <option value="1">1 Furbaby</option>
-        <option value="2">2 Furbabies</option>
-        <option value="3">3 Furbabies</option>
+        <option value="0" selected>0 FURBABIES</option>
+        <option value="1">1 FURBABY</option>
+        <option value="2">2 FURBABIES</option>
+        <option value="3">3 FURBABIES</option>
       </select>
-      <input name="Dietary" placeholder="Dietary Restrictions if Any">
-      <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
-      <button type="submit" id="submit-btn">Submit RSVP</button>
+      <input name="Dietary" placeholder="DIETARY RESTRICTIONS">
+      <textarea name="Message" rows="3" placeholder="MESSAGE FOR THE COUPLE"></textarea>
+      <button type="submit" id="submit-btn">SUBMIT RSVP</button>
       <p id="form-status" style="margin-top:10px; font-size:14px; color:#FFE100; font-weight:700; display:none;"></p>
     </form>
   </div>
@@ -501,10 +536,10 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
 
 <section id="lucky" class="reveal">
   <div class="card">
-    <h3 class="tropical-text">Lucky Draw Blessings</h3>
+    <h3 class="tropical-text">BONUS STAGE: Lucky Draw</h3>
     <div class="divider"></div>
-    <p style="font-weight: 600; font-size: 18px;">Pick ONE card to scratch!</p>
-    <p style="opacity:0.8; margin-top:-10px; font-size:14px;">Once you start scratching, the others will disappear.</p>
+    <p style="font-weight: 600; font-size: 18px; color: var(--neon-yellow);">SCRATCH ONE CARD TO REVEAL!</p>
+    <p style="opacity:0.8; margin-top:-10px; font-size:14px;">Choose wisely. Others will lock.</p>
 
     <div class="scratch-zone">
       <div class="scratch-card"><div class="prize">永结同心</div><canvas></canvas></div>
@@ -517,7 +552,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
   </div>
 </section>
 
-<footer>囍 Raynard & Shijie 囍</footer>
+<footer>GAME OVER // PRESS START TO CONTINUE <br> 囍 Raynard &amp; Shijie 囍</footer>
 
 <script>
 // --- SCROLL ANIMATION ---
@@ -570,13 +605,12 @@ function updateCarousel(instant = false) {
     track.style.transition = 'none';
   }
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
-   
+  
   // Update Dots
-  // Helper to map index to 0-10 range (ignoring clones)
   let dotIndex = currentIndex - 1;
-  if (dotIndex < 0) dotIndex = slides.length - 1; // Clone of last
-  if (dotIndex >= slides.length) dotIndex = 0;     // Clone of first
-   
+  if (dotIndex < 0) dotIndex = slides.length - 1; 
+  if (dotIndex >= slides.length) dotIndex = 0; 
+  
   dots.forEach(d => d.classList.remove('active'));
   if (dots[dotIndex]) dots[dotIndex].classList.add('active');
 }
@@ -600,12 +634,10 @@ prevBtn.addEventListener('click', () => {
 // 5. Infinite Loop Check (Transition End)
 track.addEventListener('transitionend', () => {
   isTransitioning = false;
-  // If at last clone (Copy of Slide 1) -> Jump to real Slide 1
   if (currentIndex === allSlides.length - 1) {
     currentIndex = 1;
     updateCarousel(true);
   }
-  // If at first clone (Copy of Last Slide) -> Jump to real Last Slide
   if (currentIndex === 0) {
     currentIndex = allSlides.length - 2;
     updateCarousel(true);
@@ -627,14 +659,12 @@ track.addEventListener('touchend', e => {
 
 function handleSwipe() {
   if (isTransitioning) return;
-  const threshold = 50; // Min distance to trigger swipe
+  const threshold = 50; 
   if (touchEndX < touchStartX - threshold) {
-    // Swiped Left -> Next
     currentIndex++;
     updateCarousel();
   }
   if (touchEndX > touchStartX + threshold) {
-    // Swiped Right -> Prev
     currentIndex--;
     updateCarousel();
   }
@@ -674,37 +704,34 @@ allCards.forEach((card, index) => {
     canvas.height = Math.floor(h * dpr);
     ctx.scale(dpr, dpr);
 
-    // Update Scratch Gradient to Silver/Blue to match theme
+    // UPDATE: Retro Synthwave Gradient overlay
     const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, "#bdc3c7");
-    grad.addColorStop(0.5, "#ecf0f1");
-    grad.addColorStop(1, "#bdc3c7");
+    grad.addColorStop(0, "#ff00ff"); /* Neon Magenta */
+    grad.addColorStop(0.5, "#bc13fe"); /* Neon Purple */
+    grad.addColorStop(1, "#ffe600"); /* Neon Yellow */
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, w, h);
 
-    // Add noise
+    // Add digital noise
     ctx.globalCompositeOperation = "source-over";
     const noiseAmount = 3000;
     for(let i=0; i<noiseAmount; i++){
-       ctx.fillStyle = Math.random() > 0.5 ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.1)";
+       ctx.fillStyle = Math.random() > 0.5 ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)";
        ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
     }
 
-    // Add Retro Logos/Speckles
-    ctx.globalAlpha = 0.6;
-    for (let i = 0; i < 40; i++){
-      const x = Math.random() * w;
-      const y = Math.random() * h;
-      const r = Math.random() * 3;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = "#1422a5"; // Deep blue speckles
-      ctx.fill();
-    }
+    // Add Retro Grid lines instead of dots
+    ctx.globalAlpha = 0.3;
+    ctx.strokeStyle = "#00ffff";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for(let i=0; i<w; i+=20) { ctx.moveTo(i,0); ctx.lineTo(i,h); }
+    for(let i=0; i<h; i+=20) { ctx.moveTo(0,i); ctx.lineTo(w,i); }
+    ctx.stroke();
     ctx.globalAlpha = 1;
   }
   initCard();
-   
+  
   function lockOthers() {
     if (hasChosen) return;
     hasChosen = true;
@@ -786,20 +813,20 @@ const submitBtn = document.getElementById('submit-btn');
 form.addEventListener('submit', e => {
   e.preventDefault();
   const originalBtnText = submitBtn.innerText;
-  submitBtn.innerText = "Sending...";
+  submitBtn.innerText = "UPLOADING...";
   submitBtn.disabled = true;
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwooJOl5iS98194GicONSQ_juCVQEKHYEUivfV9AR4GK1Zjnqfr54MYdPULIefGyICY/exec'; 
 
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     .then(response => {
-      statusMsg.innerText = "Thank you! Your RSVP has been received.";
+      statusMsg.innerText = "MISSION ACCOMPLISHED. RSVP CONFIRMED.";
       statusMsg.style.display = "block";
-      submitBtn.innerText = "Sent!";
+      submitBtn.innerText = "CONFIRMED";
       form.reset();
     })
     .catch(error => {
-      statusMsg.innerText = "Oops! Something went wrong. Please try again.";
-      statusMsg.style.color = "#ff6b6b"; 
+      statusMsg.innerText = "ERROR: TRANSMISSION FAILED. RETRY.";
+      statusMsg.style.color = "#ff0000"; 
       statusMsg.style.display = "block";
       submitBtn.innerText = originalBtnText;
       submitBtn.disabled = false;
