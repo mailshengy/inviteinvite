@@ -5,25 +5,26 @@
 <title>The Union of 2026, Yu Are My 世界！| Raynard & Shijie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* Day Palette */
-  --bg-sky: #e0f7fa;
-  --bg-sand: #fdf5e6;
-  --white-panel: rgba(255, 255, 255, 0.92);
+  /* --- NEW THEME: Retro HK Pop --- */
+  --bg-deep-blue: #1422a5; /* Royal Blue from Image 2 */
+  --bg-darker: #0b125e;
   
-  --text-main: #1c2e2e;
-  --text-muted: #546e7a;
-  --gold-main:#b89b3e;
+  --glass-panel: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
   
-  /* Tropical accents */
-  --leaf:#00b894;
-  --leaf-deep:#006266;
-  --ocean:#0984e3;
+  --text-main: #ffffff;
+  --text-muted: #d0d6ff;
+  
+  /* Pop Accents */
+  --pop-yellow: #FFE100; /* The yellow from the text stickers */
+  --neon-cyan: #00f3ff;
+  --neon-pink: #ff00de;
 
-  --shadow: rgba(0, 50, 50, 0.08);
+  --shadow: rgba(0, 0, 0, 0.25);
 }
 
 *{ box-sizing:border-box; }
@@ -33,35 +34,40 @@ body{
   font-family:"Space Grotesk", sans-serif;
   color: var(--text-main);
   overflow-x:hidden;
-  background: linear-gradient(180deg, var(--bg-sky) 0%, #ffffff 40%, var(--bg-sand) 100%);
+  /* CSS Grid Pattern based on Image 2 */
+  background-color: var(--bg-deep-blue);
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 40px 40px; /* Grid size */
   min-height: 100vh;
-  /* Prevent rubber-band scrolling on whole body for cleaner app feel */
   overscroll-behavior-y: none; 
 }
 
-/* Background Palms */
+/* Background Palms - Converted to Neon Wireframes */
 .palm{
   position: fixed;
   bottom: -40px;
-  width: 360px;
-  height: 360px;
-  opacity: 0.15; 
+  width: 380px;
+  height: 380px;
+  opacity: 0.6; 
   z-index: 0;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 .palm.left{ left:-80px; transform: rotate(-8deg) scale(1.05); }
-.palm.right{ right:-80px; transform: rotate(10deg) scale(1.05); opacity:0.12; }
+.palm.right{ right:-80px; transform: rotate(10deg) scale(1.05); }
 
-/* Motes */
+/* Motes - Changed to "City Lights" glow */
 .motes{
   position: fixed;
   inset:0;
   pointer-events:none;
   z-index:1;
   background:
-    radial-gradient(circle at 10% 30%, rgba(255, 215, 0, 0.4), transparent 5%),
-    radial-gradient(circle at 70% 20%, rgba(255, 165, 0, 0.3), transparent 6%),
-    radial-gradient(circle at 40% 80%, rgba(0, 184, 148, 0.2), transparent 4%);
+    radial-gradient(circle at 10% 30%, rgba(255, 225, 0, 0.2), transparent 5%),
+    radial-gradient(circle at 70% 20%, rgba(0, 243, 255, 0.2), transparent 6%),
+    radial-gradient(circle at 40% 80%, rgba(255, 0, 222, 0.15), transparent 4%);
   animation: float 15s ease-in-out infinite alternate;
 }
 @keyframes float{
@@ -73,11 +79,11 @@ body{
 header{
   position: sticky;
   top: 0;
-  background: rgba(255,255,255,0.85);
+  background: rgba(11, 18, 94, 0.85); /* Dark Blue Glass */
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   z-index: 10;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .header-inner{
@@ -94,11 +100,12 @@ nav a{
   text-decoration:none;
   margin: 0 15px;
   font-size:14px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   transition: color 0.3s;
 }
-nav a:hover{ color: var(--leaf-deep); }
+nav a:hover{ color: var(--pop-yellow); text-shadow: 0 0 8px rgba(255, 225, 0, 0.6); }
 
 section{
   max-width:900px;
@@ -119,12 +126,15 @@ section{
   transform: translateY(0);
 }
 
-/* Typography */
-.gold-text{ color: var(--gold-main); font-weight: 600; }
+/* Typography Updates */
+.gold-text{ color: var(--pop-yellow); font-weight: 700; letter-spacing: 1px; }
+
 .tropical-text{
-  background: linear-gradient(120deg, var(--leaf-deep), var(--leaf));
+  /* Changed to Pop Gradient */
+  background: linear-gradient(120deg, #fff, var(--pop-yellow));
   -webkit-background-clip:text;
   color: transparent;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* Hero */
@@ -133,44 +143,52 @@ section{
 .hero-badge{
   display:inline-flex; align-items:center; gap:8px;
   padding:8px 16px; border-radius:999px;
-  background: #ffffff; border: 1px solid rgba(0,0,0,0.08);
-  margin-bottom: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  font-size: 11px; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--text-muted);
+  background: var(--pop-yellow); /* Yellow Badge */
+  border: 2px solid #fff;
+  margin-bottom: 24px; box-shadow: 0 4px 15px rgba(255, 225, 0, 0.3);
+  font-size: 12px; letter-spacing: 1.5px;
+  font-weight: 700;
+  text-transform: uppercase; color: var(--bg-deep-blue);
 }
-.dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--gold-main); }
+.dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--bg-deep-blue); }
 
 .hero h1{
   font-family: Cinzel, serif; font-size:18px;
-  letter-spacing:4px; color: var(--gold-main); margin: 0;
+  letter-spacing:4px; color: var(--neon-cyan); margin: 0;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
 }
 .hero h2{
   font-family: Playfair Display, serif; font-size:60px;
-  color: var(--text-main); margin: 14px 0; line-height: 1.1;
+  color: #fff; margin: 14px 0; line-height: 1.1;
+  text-shadow: 4px 4px 0px var(--bg-darker); /* Retro Block Shadow */
 }
 .hero h3{ font-weight:500; letter-spacing:1px; margin: 0; color: var(--text-muted); }
-.hero .subline{ margin-top: 16px; font-size: 15px; color: var(--leaf-deep); font-weight: 500; }
+.hero .subline{ margin-top: 16px; font-size: 15px; color: var(--pop-yellow); font-weight: 600; }
 .hero .subline span{ padding: 0 8px; }
 
-/* Cards */
+/* New Card Style: Glassmorphism */
 .card{
-  background: var(--white-panel);
-  border: 1px solid #fff; border-radius: 24px;
+  background: var(--glass-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
   padding: 50px; margin-bottom: 40px; position: relative;
   box-shadow: 0 20px 40px var(--shadow);
 }
 .card h3{
   font-family: Playfair Display, serif; font-size: 32px;
-  margin-top: 0; color: var(--leaf-deep);
+  margin-top: 0; color: var(--pop-yellow);
 }
 .divider{
-  height: 2px; width: 60px; background: var(--gold-main);
-  margin: 18px 0 26px; opacity: 0.5;
+  height: 4px; width: 60px; background: var(--neon-cyan);
+  margin: 18px 0 26px; border-radius: 2px;
+  box-shadow: 0 0 10px var(--neon-cyan);
 }
 
 /* --- CAROUSEL STYLES --- */
 #gallery {
-    padding: 0 0 60px 0; /* Remove side padding to let carousel go edge to edge */
+    padding: 0 0 60px 0;
     width: 100%;
     max-width: 1000px;
     overflow: hidden;
@@ -179,24 +197,23 @@ section{
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 400px; /* Limits width on desktop */
+  max-width: 400px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  background: #fff;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  background: #000;
   border: 4px solid #fff;
+  transform: rotate(-2deg); /* Slight playful tilt like a polaroid */
 }
 
 .carousel-track {
   display: flex;
   width: 100%;
-  /* Move via JS transform */
 }
 
 .carousel-slide {
   min-width: 100%;
-  /* Vertical Aspect Ratio 2:3 (width:height) */
   aspect-ratio: 2 / 3; 
   position: relative;
 }
@@ -204,7 +221,7 @@ section{
 .carousel-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fills the aspect ratio box nicely */
+  object-fit: cover;
   display: block;
 }
 
@@ -213,73 +230,73 @@ section{
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(0, 98, 102, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,0.5);
 }
 .carousel-dot.active {
-  background: var(--gold-main);
+  background: var(--pop-yellow);
+  border-color: var(--pop-yellow);
   transform: scale(1.3);
+  box-shadow: 0 0 10px var(--pop-yellow);
 }
 
-/* Carousel Navigation Buttons (Desktop) */
+/* Carousel Navigation Buttons */
 .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(4px);
-  border: none;
+  background: rgba(255,255,255,0.9);
+  border: 2px solid var(--bg-deep-blue);
   width: 40px; height: 40px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 5;
-  color: var(--leaf-deep);
+  color: var(--bg-deep-blue);
   font-size: 18px;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   transition: all 0.2s;
 }
-.nav-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+.nav-btn:hover { background: var(--pop-yellow); transform: translateY(-50%) scale(1.1); border-color: #fff; }
 .nav-btn.prev { left: 15px; }
 .nav-btn.next { right: 15px; }
 
 @media(max-width: 680px) {
-  /* On mobile, let the carousel be a bit wider relative to screen */
-  .carousel-container {
-    max-width: 85%; /* 85% of screen width */
-  }
+  .carousel-container { max-width: 85%; transform: rotate(0deg); }
 }
 
 /* Info Grid */
 .info-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:30px; }
-.label{ font-size:11px; letter-spacing:1px; color: var(--gold-main); text-transform: uppercase; font-weight: 700; }
-.value{ font-size:18px; margin-top: 6px; color: var(--text-main); }
+.label{ font-size:12px; letter-spacing:1px; color: var(--neon-cyan); text-transform: uppercase; font-weight: 700; }
+.value{ font-size:18px; margin-top: 6px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
 /* Form */
 form{ display:grid; gap:18px; }
 input, select, textarea{
-  background: #ffffff; border: 1px solid #dcdcdc; padding: 14px;
-  color: var(--text-main); border-radius: 8px; font-family:"Space Grotesk", sans-serif;
+  background: rgba(255, 255, 255, 0.9); border: 2px solid transparent; padding: 14px;
+  color: var(--bg-darker); border-radius: 8px; font-family:"Space Grotesk", sans-serif;
   outline: none; font-size: 15px; transition: all 0.3s;
+  font-weight: 500;
 }
 input:focus, select:focus, textarea:focus{
-  border-color: var(--leaf); box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.1);
+  border-color: var(--pop-yellow); box-shadow: 0 0 15px rgba(255, 225, 0, 0.4);
 }
-::placeholder { color: #a0a0a0; }
+::placeholder { color: #555; }
 button{
-  background: linear-gradient(135deg, var(--leaf-deep), var(--leaf));
-  border: none; padding: 16px; color: #fff; font-weight: 600;
-  letter-spacing: 1px; border-radius: 8px; cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 184, 148, 0.25); transition: transform 0.2s;
+  background: var(--pop-yellow);
+  border: 2px solid #fff; padding: 16px; color: var(--bg-deep-blue); font-weight: 700;
+  letter-spacing: 1px; border-radius: 8px; cursor: pointer; text-transform: uppercase;
+  box-shadow: 0 8px 20px rgba(0,0,0, 0.3); transition: transform 0.2s;
 }
-button:hover{ transform: translateY(-2px); }
+button:hover{ transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 225, 0, 0.4); }
 
 /* --- REALISTIC SCRATCH CARD CSS --- */
 .scratch-zone{
@@ -287,7 +304,6 @@ button:hover{ transform: translateY(-2px); }
   grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
   gap:16px;
   margin-top: 30px;
-  /* Prevent selecting text while furiously scratching */
   user-select: none;
   -webkit-user-select: none;
 }
@@ -297,16 +313,16 @@ button:hover{ transform: translateY(-2px); }
   height: 120px;
   border-radius: 12px;
   overflow: hidden;
-  background: #f0fdf4; 
-  border: 1px solid rgba(0,0,0,0.1);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  background: #fff; /* White background for prize to pop */
+  border: 2px solid var(--neon-cyan);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: transform 0.3s, opacity 0.5s ease, filter 0.5s ease;
   touch-action: none; 
 }
 
 /* Locked State */
 .scratch-card.locked-out {
-  opacity: 0.4;
+  opacity: 0.3;
   filter: grayscale(100%);
   pointer-events: none;
   transform: scale(0.95);
@@ -314,15 +330,15 @@ button:hover{ transform: translateY(-2px); }
 
 /* Winner/Revealed State */
 .scratch-card.revealed {
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-  border-color: var(--gold-main);
+  box-shadow: 0 0 20px var(--pop-yellow);
+  border-color: var(--pop-yellow);
 }
 
 .prize{
   position:absolute; inset:0;
   display:flex; align-items:center; justify-content:center;
   font-size:18px; font-weight:700; letter-spacing:2px;
-  color: var(--leaf-deep);
+  color: var(--bg-darker); /* Dark text on white card */
   z-index:1; text-align: center;
 }
 
@@ -333,7 +349,7 @@ canvas{
 }
 
 /* Footer */
-footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--text-muted); }
+footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--text-muted); opacity: 0.7; }
 
 @media (max-width: 680px){
   .hero h2{ font-size: 42px; }
@@ -346,8 +362,8 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
 <body>
 
 <div class="motes"></div> 
-<svg class="palm left" viewBox="0 0 200 200"><defs><linearGradient id="palmGlowL" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00b894"/><stop offset="100%" stop-color="#55efc4"/></linearGradient></defs><g fill="none" stroke="url(#palmGlowL)" stroke-width="2" stroke-linecap="round"><path d="M110 190 C108 150, 96 128, 92 108 C88 86, 98 70, 110 62" /><path d="M110 68 C98 50, 74 40, 52 44 C74 48, 92 58, 110 70" /><path d="M110 68 C122 50, 146 40, 168 44 C146 48, 128 58, 110 70" /><path d="M110 78 C90 70, 64 72, 44 86 C66 82, 90 84, 110 92" /><path d="M110 78 C130 70, 156 72, 176 86 C154 82, 130 84, 110 92" /><path d="M110 62 C108 40, 100 26, 88 16 C98 28, 106 44, 110 62" /></g></svg>
-<svg class="palm right" viewBox="0 0 200 200"><defs><linearGradient id="palmGlowR" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0984e3"/><stop offset="100%" stop-color="#74b9ff"/></linearGradient></defs><g fill="none" stroke="url(#palmGlowR)" stroke-width="2" stroke-linecap="round"><path d="M90 190 C92 150, 104 128, 108 108 C112 86, 102 70, 90 62" /><path d="M90 68 C102 50, 126 40, 148 44 C126 48, 108 58, 90 70" /><path d="M90 68 C78 50, 54 40, 32 44 C54 48, 72 58, 90 70" /><path d="M90 78 C110 70, 136 72, 156 86 C134 82, 110 84, 90 92" /><path d="M90 78 C70 70, 44 72, 24 86 C46 82, 70 84, 90 92" /><path d="M90 62 C92 40, 100 26, 112 16 C102 28, 94 44, 90 62" /></g></svg>
+<svg class="palm left" viewBox="0 0 200 200"><g fill="none" stroke="#ff00de" stroke-width="1.5" stroke-linecap="round"><path d="M110 190 C108 150, 96 128, 92 108 C88 86, 98 70, 110 62" /><path d="M110 68 C98 50, 74 40, 52 44 C74 48, 92 58, 110 70" /><path d="M110 68 C122 50, 146 40, 168 44 C146 48, 128 58, 110 70" /><path d="M110 78 C90 70, 64 72, 44 86 C66 82, 90 84, 110 92" /><path d="M110 78 C130 70, 156 72, 176 86 C154 82, 130 84, 110 92" /><path d="M110 62 C108 40, 100 26, 88 16 C98 28, 106 44, 110 62" /></g></svg>
+<svg class="palm right" viewBox="0 0 200 200"><g fill="none" stroke="#00f3ff" stroke-width="1.5" stroke-linecap="round"><path d="M90 190 C92 150, 104 128, 108 108 C112 86, 102 70, 90 62" /><path d="M90 68 C102 50, 126 40, 148 44 C126 48, 108 58, 90 70" /><path d="M90 68 C78 50, 54 40, 32 44 C54 48, 72 58, 90 70" /><path d="M90 78 C110 70, 136 72, 156 86 C134 82, 110 84, 90 92" /><path d="M90 78 C70 70, 44 72, 24 86 C46 82, 70 84, 90 92" /><path d="M90 62 C92 40, 100 26, 112 16 C102 28, 94 44, 90 62" /></g></svg>
 
 <header>
   <div class="header-inner">
@@ -445,7 +461,7 @@ footer{ text-align:center; padding: 60px 20px; font-size: 13px; color: var(--tex
       <input name="Dietary" placeholder="Dietary Restrictions if Any">
       <textarea name="Message" rows="3" placeholder="Message for the couple"></textarea>
       <button type="submit" id="submit-btn">Submit RSVP</button>
-      <p id="form-status" style="margin-top:10px; font-size:14px; color:#00b894; display:none;"></p>
+      <p id="form-status" style="margin-top:10px; font-size:14px; color:#FFE100; font-weight:700; display:none;"></p>
     </form>
   </div>
 </section>
@@ -591,7 +607,7 @@ function handleSwipe() {
   }
 }
 
-// --- ROBUST SCRATCH CARD LOGIC (Unchanged) ---
+// --- ROBUST SCRATCH CARD LOGIC ---
 const allCards = document.querySelectorAll(".scratch-card");
 let hasChosen = false; 
 
@@ -625,15 +641,15 @@ allCards.forEach((card, index) => {
     canvas.height = Math.floor(h * dpr);
     ctx.scale(dpr, dpr);
 
+    // Update Scratch Gradient to Silver/Blue to match theme
     const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, "#dcdde1");
-    grad.addColorStop(0.2, "#f5f6fa");
-    grad.addColorStop(0.5, "#b2bec3");
-    grad.addColorStop(0.8, "#f5f6fa");
-    grad.addColorStop(1, "#dcdde1");
+    grad.addColorStop(0, "#bdc3c7");
+    grad.addColorStop(0.5, "#ecf0f1");
+    grad.addColorStop(1, "#bdc3c7");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, w, h);
 
+    // Add noise
     ctx.globalCompositeOperation = "source-over";
     const noiseAmount = 3000;
     for(let i=0; i<noiseAmount; i++){
@@ -641,6 +657,7 @@ allCards.forEach((card, index) => {
        ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
     }
 
+    // Add Retro Logos/Speckles
     ctx.globalAlpha = 0.6;
     for (let i = 0; i < 40; i++){
       const x = Math.random() * w;
@@ -648,7 +665,7 @@ allCards.forEach((card, index) => {
       const r = Math.random() * 3;
       ctx.beginPath();
       ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = "#b89b3e";
+      ctx.fillStyle = "#1422a5"; // Deep blue speckles
       ctx.fill();
     }
     ctx.globalAlpha = 1;
@@ -749,7 +766,7 @@ form.addEventListener('submit', e => {
     })
     .catch(error => {
       statusMsg.innerText = "Oops! Something went wrong. Please try again.";
-      statusMsg.style.color = "#d63031"; 
+      statusMsg.style.color = "#ff6b6b"; 
       statusMsg.style.display = "block";
       submitBtn.innerText = originalBtnText;
       submitBtn.disabled = false;
